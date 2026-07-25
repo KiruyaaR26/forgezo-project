@@ -1,0 +1,176 @@
+<style>
+:root {
+  /* --- Variable Kustom Anda --- */
+  --custom-bg-base:      #0C1016;
+  --custom-bg-elevated:  #12161D;
+  --custom-text-primary: #F8F8FF;
+  --custom-text-muted:   #98A0AD;
+  --custom-border:       #2D3444;
+  --custom-accent:       #FF4500;
+  --custom-stroke-alt:   #A8B9D3;
+  --custom-placeholder:  #D9D9D9;
+
+  --custom-radius-sm:    4px;
+  --custom-radius-md:    8px;
+  --custom-radius-lg:    10px;
+  --custom-radius-xl:    20px;
+  --custom-radius-pill:  999px;
+
+  /* --- Pemetaan ke Variabel Internal Forgejo --- */
+  
+  /* Background & Card */
+  --color-body: var(--custom-bg-base);
+  --color-box-body: var(--custom-bg-elevated);
+  --color-box-header: var(--custom-bg-elevated);
+  --color-footer: var(--custom-bg-base);
+  
+  /* Navbar Atas */
+  --color-navbar: var(--custom-bg-elevated);
+  --color-nav-bg: var(--custom-bg-elevated);
+  --color-nav-hover-bg: var(--custom-bg-base);
+  
+  /* Teks */
+  --color-text: var(--custom-text-primary);
+  --color-text-dark: var(--custom-text-primary);
+  --color-text-light: var(--custom-text-muted);
+  --color-text-light-2: var(--custom-text-muted);
+  --color-text-light-3: var(--custom-text-muted);
+  
+  /* Border & Garis */
+  --color-border: var(--custom-border);
+  --color-secondary-border: var(--custom-border);
+  --color-box-border: var(--custom-border);
+  
+  /* Warna Aksen (Tombol Utama, Link, Active State) */
+  --color-primary: var(--custom-accent);
+  --color-primary-dark-1: #E03D00; /* Sedikit lebih gelap dari accent untuk efek hover */
+  --color-primary-dark-2: #C23500;
+  --color-primary-light-1: #FF5714;
+  --color-active: var(--custom-accent);
+  --color-link: var(--custom-accent);
+  
+  /* Input & Tombol Biasa */
+  --color-input-background: var(--custom-bg-base);
+  --color-input-text: var(--custom-text-primary);
+  --color-input-border: var(--custom-border);
+  --color-button: var(--custom-bg-elevated);
+  
+  /* Border Radius Override */
+  --border-radius: var(--custom-radius-md);
+}
+
+/* Penyesuaian Font Global */
+body, .ui.menu, input, button, textarea {
+    font-family: 'Inter', 'Manrope', -apple-system, 'Segoe UI', sans-serif !important;
+}
+code, pre, .mono, .commit-id {
+    font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace !important;
+}
+
+/* =========================================
+   FIX: MACRO-WHITESPACE & KOTAK (CARDS)
+   ========================================= */
+/* Memberikan jarak (space) yang luas antar kotak dan di dalam kotak */
+.ui.card, .ui.cards>.card, .ui.segment, .box, .repository.file.list {
+    background: var(--custom-bg-elevated) !important;
+    border: 1px solid var(--custom-border) !important;
+    border-radius: var(--custom-radius-lg) !important;
+    
+    /* Jarak luas antar kotak (Macro-whitespace) */
+    margin-bottom: 2.5rem !important; 
+    
+    /* Jarak lega di dalam kotak (Padding) */
+    padding: 1.5rem !important; 
+    
+    /* Sedikit shadow agar terangkat */
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2) !important;
+}
+
+/* Navbar / Menu Utama */
+.ui.menu {
+    background: var(--custom-bg-elevated) !important;
+    border: 1px solid var(--custom-border) !important;
+    border-radius: var(--custom-radius-lg) !important;
+}
+
+.ui.secondary.menu .item {
+    border-radius: var(--custom-radius-md) !important;
+}
+
+.ui.secondary.menu {
+    margin-top: 1rem;
+}
+#navbar {
+    padding: 0.5rem 1rem !important;
+    display: flex !important; 
+    align-items: center !important;
+    background: transparent;
+    border-bottom: 0px;
+}
+
+/* Memberikan jarak (wide space) yang sangat lega antara menu kiri dan area Search di kanan */
+#navbar .right.menu,
+#navbar .right.stackable.menu {
+    margin-left: auto !important; /* Dorong semua elemen di menu kanan agar mentok ke ujung kanan */
+}
+
+/* Jarak tambahan khusus untuk Search Bar agar tidak berdempetan */
+#navbar .right.menu .item {
+    margin-left: 1.5rem !important; 
+}
+
+/* Mempercantik dan memanjangkan Search bar sedikit agar proporsional dengan wide space */
+#navbar .right.menu .ui.input input {
+    width: 280px !important;
+    transition: width 0.3s ease !important;
+}
+
+#navbar .right.menu .ui.input input:focus {
+    width: 340px !important; /* Melebar saat diklik, efek elegan */
+}
+
+.overflow-menu {
+  display: flex;
+  flex: 1;
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 95%;
+  max-width: 1200px;
+  height: 40px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  
+  /* Efek Glassmorphism Khas Mac */
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  
+  /* Border dan Shadow Halus */
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 12px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+
+}
+
+/* Tabel File Explorer (jangan ditimpa padding besarnya ke semua td) */
+.ui.table.segment {
+    padding: 0 !important; /* Hilangkan padding dalam untuk tabel agar header nempel pinggir */
+}
+
+.ui.table {
+    background: var(--custom-bg-elevated) !important;
+    border: 1px solid var(--custom-border) !important;
+    border-radius: var(--custom-radius-lg) !important;
+}
+
+.ui.table th {
+    padding: 1.25rem 1rem !important; /* Header tabel lebih lega */
+}
+
+.ui.table td {
+    padding: 1rem !important; /* Baris tabel lebih lega */
+}
+</style>
