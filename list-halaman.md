@@ -90,3 +90,49 @@ Dokumentasi ini berisi struktur menu dan navigasi halaman aplikasi pengelolaan r
     * Runners
     * Secrets
     * Variables
+
+ ---
+
+ ## 5. Halaman User
+  * **User**
+    * repositories
+    * packages
+    * public activity
+    * starred repositories
+   
+ * **User settings**
+  * profile
+  * account
+  * appearance
+  * security
+  * applications
+  * authorized integrations
+  * ssh / gpg keys
+  * package
+  * organizations
+  * repositories
+  * blocked users
+
+---
+
+ ## 6. Site Administration
+  * **Admin settings**
+    * **identity & access**
+      * authntication sources
+         * addauthentication source
+      * organizations
+      * user accounts
+         * create user account
+      * user emails
+    * **code assets**
+       * packages
+       * repositories
+         * unadopted repositories
+    * **integrations**
+       * applications
+       * webhooks
+    * **actions**
+       * runnes
+          * create runner
+          * [runner yang sudah di buat]
+       * variables
