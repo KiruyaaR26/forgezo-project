@@ -1,0 +1,226 @@
+<div class="yuros-repo-grid">
+	{{range .Repos}}
+		<div class="yuros-card-outer yuros-fade-up">
+			<div class="yuros-card-inner">
+				
+				<!-- Header: Icon & Title -->
+				<div class="yuros-card-header">
+					<div class="yuros-card-avatar">
+						{{template "repo/icon" .}}
+					</div>
+					<div class="yuros-card-title-group">
+						<div class="yuros-card-title">
+							{{if and (or $.PageIsExplore $.PageIsProfileStarList) .Owner}}
+								<a href="{{.Owner.HomeLink}}">{{.Owner.Name}}</a> /
+							{{end}}
+							<a href="{{.Link}}">{{.Name}}</a>
+						</div>
+						
+						<!-- Badges (Archived, Private, etc) -->
+						<div class="yuros-card-badges">
+							{{if .IsArchived}}
+								<span class="ui label">{{ctx.Locale.Tr "repo.desc.archived"}}</span>
+							{{end}}
+							{{if .IsPrivate}}
+								<span class="ui label">{{ctx.Locale.Tr "repo.desc.private"}}</span>
+							{{else}}
+								{{if .Owner.Visibility.IsPrivate}}
+									<span class="ui label">{{ctx.Locale.Tr "repo.desc.internal"}}</span>
+								{{end}}
+							{{end}}
+							{{if .IsTemplate}}
+								<span class="ui label">{{ctx.Locale.Tr "repo.desc.template"}}</span>
+							{{end}}
+							{{if eq .ObjectFormatName "sha256"}}
+								<span class="ui label">{{ctx.Locale.Tr "repo.desc.sha256"}}</span>
+							{{end}}
+						</div>
+					</div>
+				</div>
+
+				<!-- Body: Description HTML -->
+				{{$description := .DescriptionHTML $.Context}}
+				<div class="yuros-card-body">
+					{{if $description}}
+						{{$description}}
+					{{else}}
+						<span style="opacity: 0.4; font-style: italic;">No description provided.</span>
+					{{end}}
+				</div>
+
+				<!-- Topics -->
+				{{if .Topics}}
+					<div class="yuros-card-topics repo-topics">
+					{{range .Topics}}
+						{{if ne . ""}}<a class="ui label" href="{{AppSubUrl}}/explore/repos?q={{.}}&topic=1">{{.}}</a>{{end}}
+					{{end}}
+			<div class="yuros-repo-grid">
+	￼{{range .Repos}}
+		￼<div class="yuros-card-outer yuros-fade-up">
+			￼<div class="yuros-card-inner">
+				
+				<!-- Header: Icon & Title -->
+				￼<div class="yuros-card-header">
+					￼<div class="yuros-card-avatar">
+						{{template "repo/icon" .}}
+					</div>
+					￼<div class="yuros-card-title-group">
+						￼<div class="yuros-card-title">
+							￼{{if and (or $.PageIsExplore $.PageIsProfileStarList) .Owner}}
+								<a href="{{.Owner.HomeLink}}">{{.Owner.Name}}</a> /
+							{{end}}
+							<a href="{{.Link}}">{{.Name}}</a>
+						</div>
+						
+						<!-- Badges (Archived, Private, etc) -->
+						￼<div class="yuros-card-badges">
+							￼{{if .IsArchived}}
+								<span class="ui label">{{ctx.Locale.Tr "repo.desc.archived"}}</span>
+							{{end}}
+							￼{{if .IsPrivate}}
+								<span class="ui label">{{ctx.Locale.Tr "repo.desc.private"}}</span>
+							￼{{else}}
+								￼{{if .Owner.Visibility.IsPrivate}}
+									<span class="ui label">{{ctx.Locale.Tr "repo.desc.internal"}}</span>
+								{{end}}
+							{{end}}
+							￼{{if .IsTemplate}}
+								<span class="ui label">{{ctx.Locale.Tr "repo.desc.template"}}</span>
+							{{end}}
+							￼{{if eq .ObjectFormatName "sha256"}}
+								<span class="ui label">{{ctx.Locale.Tr "repo.desc.sha256"}}</span>
+							{{end}}
+						</div>
+					</div>
+			<div class="yuros-repo-grid">
+	￼{{range .Repos}}
+		￼<div class="yuros-card-outer yuros-fade-up">
+			￼<div class="yuros-card-inner">
+				
+				<!-- Header: Icon & Title -->
+				￼<div class="yuros-card-header">
+					￼<div class="yuros-card-avatar">
+						{{template "repo/icon" .}}
+					</div>
+					￼<div class="yuros-card-title-group">
+						￼<div class="yuros-card-title">
+							￼{{if and (or $.PageIsExplore $.PageIsProfileStarList) .Owner}}
+								<a href="{{.Owner.HomeLink}}">{{.Owner.Name}}</a> /
+							{{end}}
+							<a href="{{.Link}}">{{.Name}}</a>
+						</div>
+						
+						<!-- Badges (Archived, Private, etc) -->
+						￼<div class="yuros-card-badges">
+							￼{{if .IsArchived}}
+								<span class="ui label">{{ctx.Locale.Tr "repo.desc.archived"}}</span>
+							{{end}}
+							￼{{if .IsPrivate}}
+								<span class="ui label">{{ctx.Locale.Tr "repo.desc.private"}}</span>
+							￼{{else}}
+								￼{{if .Owner.Visibility.IsPrivate}}
+									<span class="ui label">{{ctx.Locale.Tr "repo.desc.internal"}}</span>
+								{{end}}
+							{{end}}
+							￼{{if .IsTemplate}}
+								<span class="ui label">{{ctx.Locale.Tr "repo.desc.template"}}</span>
+							{{end}}
+							￼{{if eq .ObjectFormatName "sha256"}}
+								<span class="ui label">{{ctx.Locale.Tr "repo.desc.sha256"}}</span>
+							{{end}}
+						</div>
+					</div>
+					</div>
+				{{end}}
+
+				<!-- Footer: Stats & Updated -->
+				<div class="yuros-card-footer">
+					<div class="yuros-card-stats muted-links">
+						<!-- Language -->
+						{{if .PrimaryLanguage}}
+							<a class="yuros-stat-item" href="?q={{$.Keyword}}&sort={{$.SortType}}&language={{.PrimaryLanguage.Language}}{{if $.TabName}}&tab={{$.TabName}}{{end}}">
+								<i class="yuros-lang-dot" style="background-color: {{.PrimaryLanguage.Color}}; color: {{.PrimaryLanguage.Color}};"></i>
+								<span>{{.PrimaryLanguage.Language}}</span>
+							</a>
+						{{end}}
+						
+						<!-- Stars -->
+						{{if not $.DisableStars}}
+							<a class="yuros-stat-item" href="{{.Link}}/stars"
+								aria-label="{{ctx.Locale.TrPluralString .NumStars "stars.n_stars" (printf "%d" .NumStars)}}"
+								{{if ge .NumStars 1000}}
+									data-tooltip-content="{{ctx.Locale.TrPluralString .NumStars "stars.n_stars" (ctx.Locale.PrettyNumber .NumStars)}}"
+								{{end}}
+								>
+								{{svg "octicon-star" 14}}
+								<span>{{CountFmt .NumStars}}</span>
+							</a>
+						{{end}}
+						
+						<!-- Forks -->
+						{{if not $.DisableForks}}
+							<a class="yuros-stat-item" href="{{.Link}}/forks"
+								aria-label="{{ctx.Locale.TrPluralString .NumForks "fork.n_forks" (printf "%d" .NumForks)}}"
+								{{if ge .NumForks 1000}}
+									data-tooltip-content="{{ctx.Locale.TrPluralString .NumForks "fork.n_forks" (ctx.Locale.PrettyNumber .NumForks)}}"
+								{{end}}
+			<div class="yuros-repo-grid">
+	￼{{range .Repos}}
+		￼<div class="yuros-card-outer yuros-fade-up">
+			￼<div class="yuros-card-inner">
+				
+				<!-- Header: Icon & Title -->
+				￼<div class="yuros-card-header">
+					￼<div class="yuros-card-avatar">
+						{{template "repo/icon" .}}
+					</div>
+					￼<div class="yuros-card-title-group">
+						￼<div class="yuros-card-title">
+							￼{{if and (or $.PageIsExplore $.PageIsProfileStarList) .Owner}}
+								<a href="{{.Owner.HomeLink}}">{{.Owner.Name}}</a> /
+							{{end}}
+							<a href="{{.Link}}">{{.Name}}</a>
+						</div>
+						
+						<!-- Badges (Archived, Private, etc) -->
+						￼<div class="yuros-card-badges">
+							￼{{if .IsArchived}}
+								<span class="ui label">{{ctx.Locale.Tr "repo.desc.archived"}}</span>
+							{{end}}
+							￼{{if .IsPrivate}}
+								<span class="ui label">{{ctx.Locale.Tr "repo.desc.private"}}</span>
+							￼{{else}}
+								￼{{if .Owner.Visibility.IsPrivate}}
+									<span class="ui label">{{ctx.Locale.Tr "repo.desc.internal"}}</span>
+								{{end}}
+							{{end}}
+							￼{{if .IsTemplate}}
+								<span class="ui label">{{ctx.Locale.Tr "repo.desc.template"}}</span>
+							{{end}}
+							￼{{if eq .ObjectFormatName "sha256"}}
+								<span class="ui label">{{ctx.Locale.Tr "repo.desc.sha256"}}</span>
+							{{end}}
+						</div>
+					</div>
+								>
+								{{svg "octicon-repo-forked" 14}}
+								<span>{{CountFmt .NumForks}}</span>
+							</a>
+						{{end}}
+					</div>
+					
+					<!-- Updated -->
+					<div class="yuros-card-updated">
+						{{ctx.Locale.Tr "org.repo_updated" (DateUtils.TimeSince .UpdatedUnix)}}
+					</div>
+				</div>
+
+			</div>
+		</div>
+	{{else}}
+		<!-- Empty State -->
+		<div class="yuros-no-results">
+			{{ctx.Locale.Tr "search.no_results"}}
+		</div>
+	{{end}}
+</div>
