@@ -1,39 +1,116 @@
-   {{template "base/head" .}}                                                                                                                                                           
-    <div role="main" aria-label="{{if .IsSigned}}{{ctx.Locale.Tr "dashboard"}}{{else}}{{ctx.Locale.Tr "home"}}{{end}}" class="page-content home">                                        
-                                                                                                                                                                                            
-        <!-- Hero Section -->                                                                                                                                                               
-        <div class="tw-py-20 tw-px-8 tw-mb-8 tw-flex tw-flex-col tw-items-center tw-justify-center tw-text-center">                                                                         
-                                                                                                                                                                                                
-            <!-- Logo  -->                                                                                                                    
-            <img class="logo tw-mb-8 tw-drop-shadow-2xl tw-transition-transform tw-duration-300 hover:tw-scale-105"                                                                             
-                 width="200" height="200"                                                                                                                                                           
-                 src="{{AssetUrlPrefix}}/img/logo.svg"                                                                                                                                              
-                 alt="Blackbird Forge">                                                                                                                                                             
-                                                                                                                                                                                                
-            <div class="hero">                                                                                                                                                                  
-                <!-- Judul dengan ukuran lebih besar, tebal, dan modern -->                                                                                                                         
-                <h1 class="tw-text-5xl md:tw-text-6xl tw-font-extrabold tw-tracking-tight tw-mb-4">                                                                                                 
-                    Blackbird Forge                                                                                                                                                                     
-    		</h1>
-                
-                <!-- Subtitle dengan opacity dan max-width agar lebih elegan dibaca -->
-                <h2 class="tw-text-xl tw-font-medium tw-opacity-80 tw-max-w-2xl tw-mx-auto tw-leading-relaxed">
-                    Git internal khusus untuk tim <strong>Blackbird OS</strong>.<br>
-                    Tempat kolaborasi kode yang aman, cepat, dan terpercaya.
-                </h2>
-  
-                <!-- Tombol CTA (Call to Action) yang hanya muncul jika user belum login -->
-                {{if not .IsSigned}}
-                <div class="tw-mt-10 tw-flex tw-justify-center tw-gap-4">
-                    <a class="ui primary huge button tw-shadow-lg hover:tw-shadow-xl tw-transition-shadow" href="{{AppSubUrl}}/user/login">
-    			<i class="sign in icon"></i> Masuk ke Dashboard
-                    </a>
-                </div>
-                {{end}}
-            </div>
+{{template "base/head" .}}
+<style>
+:root {
+  --spring-easing: cubic-bezier(0.32, 0.72, 0, 1);
+}
+.bf-noise {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+.bf-reveal {
+  opacity: 0;
+  filter: blur(12px);
+  transform: translateY(4rem);
+  animation: bfFadeUp 1.2s var(--spring-easing) forwards;
+}
+.bf-delay-100 { animation-delay: 100ms; }
+.bf-delay-200 { animation-delay: 200ms; }
+.bf-delay-300 { animation-delay: 300ms; }
+@keyframes bfFadeUp {
+  to { opacity: 1; filter: blur(0); transform: translateY(0); }
+}
+.bf-hero {
+  position: relative;
+  padding: 8rem 1rem 6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 70vh;
+}
+.bf-badge {
+  border-radius: 999px;
+  padding: 0.4rem 1rem;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  font-weight: 600;
+  background: var(--custom-bg-elevated);
+  color: var(--custom-text-primary);
+  border: 1px solid var(--custom-border);
+  width: max-content;
+  margin: 0 auto 2rem;
+}
+.bf-title {
+  font-size: 4.5rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+  margin-bottom: 2rem;
+  color: var(--custom-text-primary);
+}
+.bf-subtitle {
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--custom-text-muted);
+  max-width: 36rem;
+  margin: 0 auto 3rem;
+  line-height: 1.6;
+}
+.bf-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  border-radius: 999px;
+  background: var(--custom-accent);
+  color: #fff;
+  padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 300ms var(--spring-easing);
+}
+.bf-cta:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 10px 30px rgba(255,69,0,0.3);
+}
+.bf-cta-icon {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 767px) {
+  .bf-title { font-size: 2.5rem; }
+}
+</style>
+<div class="bf-noise"></div>
+<div role="main" aria-label="{{if .IsSigned}}{{ctx.Locale.Tr "dashboard"}}{{else}}{{ctx.Locale.Tr "home"}}{{end}}" class="page-content home">
+
+    <div class="bf-hero">
+        <div class="bf-badge bf-reveal">Infrastruktur Inti</div>
+        <div class="bf-reveal bf-delay-100">
+            <h1 class="bf-title">Blackbird<br>Forge.</h1>
+            <p class="bf-subtitle">Lingkungan Git level-industrial. Dirancang untuk kecepatan mutlak dan diamankan untuk dodo colorado.</p>
+            {{if not .IsSigned}}
+            <a class="bf-cta" href="{{AppSubUrl}}/user/login">
+                <span>Inisiasi Sesi</span>
+                <span class="bf-cta-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                </span>
+            </a>
+            {{end}}
         </div>
-        
-        {{template "home_forgejo" .}}
     </div>
-    {{template "base/footer" .}}
-  
+
+    {{template "home_forgejo" .}}
+
+</div>
+{{template "base/footer" .}}
