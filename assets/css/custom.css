@@ -1,4 +1,3 @@
-<style>
 :root {
   /* --- Variable Kustom Anda --- */
   --custom-bg-base:      #0C1016;
@@ -173,4 +172,76 @@ code, pre, .mono, .commit-id {
 .ui.table td {
     padding: 1rem !important; /* Baris tabel lebih lega */
 }
-</style>
+
+/* DIBAWAH INI ADALAH spacing, tipografi */
+
+/* Hero section atas (logo + judul + tagline) */
+.page-content.home .tw-mb-8 {
+    margin-bottom: 4rem !important;
+    padding-top: 3rem !important;
+}
+
+.page-content.home .logo {
+    width: 140px !important;
+    height: 140px !important;
+    margin-bottom: 1.5rem !important;
+}
+
+.page-content.home .hero h1.title {
+    font-size: 3.5rem !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.02em !important;
+    line-height: 1.1 !important;
+    margin-bottom: 0.75rem !important;
+}
+
+.page-content.home .hero h2 {
+    font-size: 1.25rem !important;
+    font-weight: 400 !important;
+    opacity: 0.75;
+    max-width: 32rem;
+    margin: 0 auto !important;
+}
+
+/* Grid 4 kartu fitur */
+.page-content.home .ui.stackable.middle.very.relaxed.page.grid {
+    margin: 0 auto 3rem auto !important;
+    max-width: 1100px !important;
+    padding: 0 2rem !important;
+}
+
+.page-content.home .ui.stackable.middle.very.relaxed.page.grid .column {
+    padding: 2.5rem !important;
+}
+
+/* Judul tiap kartu */
+.page-content.home .hero.ui.icon.header {
+    font-size: 1.75rem !important;
+    font-weight: 600 !important;
+    margin-bottom: 1.25rem !important;
+    display: flex !important;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.page-content.home .hero.ui.icon.header svg {
+    width: 1.5em !important;
+    height: 1.5em !important;
+}
+
+/* Paragraf isi kartu */
+.page-content.home p.large {
+    font-size: 1.05rem !important;
+    line-height: 1.7 !important;
+    opacity: 0.85;
+}
+
+/* Responsive: mobile jangan terlalu lebar */
+@media (max-width: 767px) {
+    .page-content.home .hero h1.title {
+        font-size: 2.25rem !important;
+    }
+    .page-content.home .ui.stackable.middle.very.relaxed.page.grid .column {
+        padding: 1.5rem !important;
+    }
+}
