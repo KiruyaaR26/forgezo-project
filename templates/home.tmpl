@@ -1,0 +1,39 @@
+   {{template "base/head" .}}                                                                                                                                                           
+    <div role="main" aria-label="{{if .IsSigned}}{{ctx.Locale.Tr "dashboard"}}{{else}}{{ctx.Locale.Tr "home"}}{{end}}" class="page-content home">                                        
+                                                                                                                                                                                            
+        <!-- Hero Section -->                                                                                                                                                               
+        <div class="tw-py-20 tw-px-8 tw-mb-8 tw-flex tw-flex-col tw-items-center tw-justify-center tw-text-center">                                                                         
+                                                                                                                                                                                                
+            <!-- Logo  -->                                                                                                                    
+            <img class="logo tw-mb-8 tw-drop-shadow-2xl tw-transition-transform tw-duration-300 hover:tw-scale-105"                                                                             
+                 width="200" height="200"                                                                                                                                                           
+                 src="{{AssetUrlPrefix}}/img/logo.svg"                                                                                                                                              
+                 alt="Blackbird Forge">                                                                                                                                                             
+                                                                                                                                                                                                
+            <div class="hero">                                                                                                                                                                  
+                <!-- Judul dengan ukuran lebih besar, tebal, dan modern -->                                                                                                                         
+                <h1 class="tw-text-5xl md:tw-text-6xl tw-font-extrabold tw-tracking-tight tw-mb-4">                                                                                                 
+                    Blackbird Forge                                                                                                                                                                     
+    		</h1>
+                
+                <!-- Subtitle dengan opacity dan max-width agar lebih elegan dibaca -->
+                <h2 class="tw-text-xl tw-font-medium tw-opacity-80 tw-max-w-2xl tw-mx-auto tw-leading-relaxed">
+                    Git internal khusus untuk tim <strong>Blackbird OS</strong>.<br>
+                    Tempat kolaborasi kode yang aman, cepat, dan terpercaya.
+                </h2>
+  
+                <!-- Tombol CTA (Call to Action) yang hanya muncul jika user belum login -->
+                {{if not .IsSigned}}
+                <div class="tw-mt-10 tw-flex tw-justify-center tw-gap-4">
+                    <a class="ui primary huge button tw-shadow-lg hover:tw-shadow-xl tw-transition-shadow" href="{{AppSubUrl}}/user/login">
+    			<i class="sign in icon"></i> Masuk ke Dashboard
+                    </a>
+                </div>
+                {{end}}
+            </div>
+        </div>
+        
+        {{template "home_forgejo" .}}
+    </div>
+    {{template "base/footer" .}}
+  
