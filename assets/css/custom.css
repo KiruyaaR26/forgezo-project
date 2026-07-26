@@ -87,7 +87,7 @@ code, pre, .mono, .commit-id {
 
 /* Navbar / Menu Utama */
 .ui.menu {
-    background: var(--custom-bg-elevated) !important;
+    background: transparent !important;
     border: 1px solid var(--custom-border) !important;
     border-radius: var(--custom-radius-lg) !important;
 }
@@ -103,7 +103,7 @@ code, pre, .mono, .commit-id {
     padding: 0.5rem 1rem !important;
     display: flex !important; 
     align-items: center !important;
-    background: transparent;
+    background: transparent !important;
     border-bottom: 0px;
 }
 
