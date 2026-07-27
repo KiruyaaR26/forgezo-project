@@ -1,0 +1,71 @@
+   <div class="yuros-newrepo-field">                                                                                                                                                    
+        <div class="yuros-newrepo-section-header">                                                                                                                                          
+            <h3>{{ctx.Locale.Tr "repo.auto_init"}}</h3>                                                                                                                                         
+        </div>                                                                                                                                                                              
+        <label class="yuros-newrepo-checkbox-label yuros-newrepo-init-toggle">                                                                                                              
+            <div class="yuros-newrepo-checkbox-wrapper">                                                                                                                                        
+                <input name="auto_init" type="checkbox" {{if .auto_init}}checked{{end}}>                                                                                                            
+                <div class="yuros-newrepo-checkbox-custom"></div>                                                                                                                                   
+            </div>                                                                                                                                                                              
+            <div class="yuros-newrepo-checkbox-content">                                                                                                                                        
+                <span class="yuros-newrepo-checkbox-title">{{ctx.Locale.Tr "repo.auto_init"}}</span>                                                                                                
+                <span class="yuros-newrepo-help">{{ctx.Locale.Tr "repo.auto_init_description"}}</span>                                                                                              
+            </div>                                                                                                                                                                              
+        </label>                                                                                                                                                                            
+    </div>                                                                                                                                                                               
+                                                                                                                                                                                         
+    <div class="hide-unless-checked yuros-newrepo-init-options">                                                                                                                         
+        <div class="yuros-newrepo-field">                                                                                                                                                   
+            <label>                                                                                                                                                                             
+                .gitignore                                                                                                                                                                          
+                <span class="yuros-newrepo-help">{{ctx.Locale.Tr "repo.repo_gitignore_helper_desc"}}</span>                                                                                         
+            </label>                                                                                                                                                                            
+            <div class="ui multiple search selection dropdown tw-flex-wrap yuros-newrepo-dropdown">                                                                                             
+                <input type="hidden" name="gitignores" value="{{.gitignores}}">                                                                                                                     
+                <div class="default text">{{ctx.Locale.Tr "repo.repo_gitignore_helper"}}</div>                                                                                                      
+                <div class="menu">                                                                                                                                                                  
+                    {{range .Gitignores}}                                                                                                                                                               
+                        <div class="item" data-value="{{.}}">{{.}}</div>                                                                                                                                    
+                    {{end}}                                                                                                                                                                             
+                </div>                                                                                                                                                                              
+            </div>                                                                                                                                                                              
+        </div>                                                                                                                                                                              
+                                                                                                                                                                                         
+        <div class="yuros-newrepo-field">                                                                                                                                                   
+            <label>                                                                                                                                                                             
+                {{ctx.Locale.Tr "repo.license"}}                                                                                                                                                    
+                <span class="yuros-newrepo-help">{{ctx.Locale.Tr "repo.license_helper_desc" "https://choosealicense.com/"}}</span>                                                                  
+            </label>                                                                                                                                                                            
+            <div class="ui search selection dropdown yuros-newrepo-dropdown">                                                                                                                   
+                <input type="hidden" name="license" value="{{.license}}">                                                                                                                           
+                <div class="default text">{{ctx.Locale.Tr "repo.license_helper"}}</div>                                                                                                             
+                <div class="menu">                                                                                                                                                                  
+                    <div class="item" data-value="">{{ctx.Locale.Tr "repo.license_helper"}}</div>                                                                                                       
+                    {{range .Licenses}}                                                                                                                                                                 
+                        <div class="item" data-value="{{.}}">{{.}}</div>                                                                                                                                    
+                    {{end}}                                                                                                                                                                             
+                </div>                                                                                                                                                                              
+            </div>                                                                                                                                                                              
+        </div>                                                                                                                                                                              
+                                                                                                                                                                                         
+        {{$supportedReadmesLength := len .Readmes}}                                                                                                                                         
+        {{if ge $supportedReadmesLength 2}}                                                                                                                                                 
+            <div class="yuros-newrepo-field">                                                                                                                                                   
+                <label>                                                                                                                                                                             
+                    {{ctx.Locale.Tr "repo.readme"}}                                                                                                                                                     
+                    <span class="yuros-newrepo-help">{{ctx.Locale.Tr "repo.readme_helper_desc"}}</span>                                                                                                 
+                </label>                                                                                                                                                                            
+                <div class="ui selection dropdown yuros-newrepo-dropdown">                                                                                                                          
+                    <input type="hidden" name="readme" value="{{.readme}}">                                                                                                                             
+                    <div class="default text">{{ctx.Locale.Tr "repo.readme_helper"}}</div>                                                                                                              
+                    <div class="menu">                                                                                                                                                                  
+                        {{range .Readmes}}                                                                                                                                                                  
+                            <div class="item" data-value="{{.}}">{{.}}</div>                                                                                                                                    
+                        {{end}}                                                                                                                                                                             
+                    </div>                                                                                                                                                                              
+                </div>                                                                                                                                                                              
+            </div>                                                                                                                                                                              
+        {{else}}                                                                                                                                                                            
+            <input type="hidden" name="readme" value="Default">                                                                                                                                 
+        {{end}}                                                                                                                                                                             
+    </div>   
