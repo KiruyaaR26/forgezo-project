@@ -1392,3 +1392,19 @@ code, pre, .mono, .commit-id {
   from { opacity: 0; transform: translateY(3rem); filter: blur(10px); }
   to { opacity: 1; transform: translateY(0); filter: blur(0); }
 }
+
+/* -- page explore organizations -- */
+.flex-list > .flex-item + .flex-item {
+   border-top: 0px !important;
+}
+
+.flex-item .flex-item {
+   gap: 16px !important;
+   padding: 16px 0 !important;
+}
+
+.flex-item .flex-item-title {
+   padding-bottom: 6px !important;
+}
+
+
