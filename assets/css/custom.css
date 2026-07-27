@@ -777,6 +777,247 @@ code, pre, .mono, .commit-id {
   border-radius: 999px;
 }
 
+/* ==========================================================================
+   Yuros Guideline - Milestone List Override (Vanguard UI Architect)
+   ========================================================================== */
+
+/* 1. Container & Layout Reset */
+.yuros-milestone-list {
+  list-style: none;
+  padding: 2rem 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* 2. Double-Bezel Card Architecture */
+.yuros-milestone-card-outer {
+  padding: 0.375rem;
+  border-radius: calc(var( --custom-radius-lg) * 1.5);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--custom-border);
+  transition: transform 600ms var(--custom-spring), border-color 600ms var(--custom-spring), box-shadow 600ms var(--custom-spring);
+  box-sizing: border-box;
+}
+
+.yuros-milestone-card-outer:hover {
+  transform: translateY(-4px) scale(0.995);
+  border-color: rgba(255, 69, 0, 0.4); /* Subtle accent glow */
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 69, 0, 0.08);
+}
+
+.yuros-milestone-card-inner {
+  background: var(--custom-bg-elevated);
+  border-radius: var( --custom-radius-lg);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  box-shadow: inset 0 1px 1px rgba(248, 248, 255, 0.04);
+  box-sizing: border-box;
+}
+
+/* 3. Header: Title & Progress Bar */
+.yuros-milestone-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.yuros-milestone-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--custom-text-primary);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.yuros-milestone-icon {
+  color: var(--custom-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--custom-border);
+}
+
+.yuros-milestone-title a {
+  color: var(--custom-text-primary);
+  text-decoration: none;
+  transition: color 300ms ease;
+}
+
+.yuros-milestone-title a:hover {
+  color: var(--custom-accent);
+}
+
+/* Custom Progress Bar */
+.yuros-milestone-progress-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 300px;
+}
+
+.yuros-milestone-progress-track {
+  flex-grow: 1;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: var( --custom-radius-pill);
+  overflow: hidden;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);
+}
+
+.yuros-milestone-progress-fill {
+  height: 100%;
+  background: var(--custom-accent);
+  border-radius: var( --custom-radius-pill);
+  transition: width 1s var(--custom-spring);
+  box-shadow: 0 0 10px var(--custom-accent);
+}
+
+.yuros-milestone-progress-text {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--custom-text-primary);
+  min-width: 4ch;
+  text-align: right;
+}
+
+/* 4. Toolbar: Stats & Actions */
+.yuros-milestone-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--custom-border);
+}
+
+.yuros-milestone-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  align-items: center;
+}
+
+.yuros-milestone-stat-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--custom-text-muted);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.yuros-milestone-stat-item svg {
+  opacity: 0.7;
+}
+
+.yuros-milestone-due-date {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.yuros-milestone-overdue {
+  color: var(--y-danger);
+  font-weight: 600;
+}
+.yuros-milestone-overdue svg {
+  opacity: 1;
+}
+
+/* Actions */
+.yuros-milestone-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.yuros-milestone-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: var(--custom-text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.4rem 0.8rem;
+  border-radius: var( --custom-radius-pill);
+  border: 1px solid var(--custom-border);
+  text-decoration: none;
+  transition: all 300ms ease;
+  cursor: pointer;
+}
+
+.yuros-milestone-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--custom-text-primary);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.yuros-milestone-btn.yuros-btn-danger:hover {
+  background: rgba(218, 54, 51, 0.1);
+  color: var(--y-danger);
+  border-color: rgba(218, 54, 51, 0.3);
+}
+
+/* 5. Content Markup */
+.yuros-milestone-content {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: var( --custom-radius-lg);
+  padding: 1.5rem;
+  border: 1px dashed var(--custom-border);
+  color: var(--custom-text-muted);
+  font-size: 0.95rem;
+}
+
+/* 6. Cinematic Entry Animation */
+.yuros-milestone-fade-up {
+  animation: yurosMilestoneFadeUp 0.8s var(--custom-spring) both;
+}
+
+.yuros-milestone-card-outer:nth-child(1) { animation-delay: 0ms; }
+.yuros-milestone-card-outer:nth-child(2) { animation-delay: 50ms; }
+.yuros-milestone-card-outer:nth-child(3) { animation-delay: 100ms; }
+.yuros-milestone-card-outer:nth-child(4) { animation-delay: 150ms; }
+.yuros-milestone-card-outer:nth-child(5) { animation-delay: 200ms; }
+
+@keyframes yurosMilestoneFadeUp {
+  0% { opacity: 0; transform: translateY(2.5rem); filter: blur(4px); }
+  100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+/* Responsive Overrides */
+@media (max-width: 768px) {
+  .yuros-milestone-progress-container {
+    max-width: 100%;
+    margin-top: 1rem;
+  }
+  .yuros-milestone-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
+}
+
+
 @media (max-width: 900px) {
   .yuros-project-layout {
     grid-template-columns: 1fr;
