@@ -1442,3 +1442,10 @@ code, pre, .mono, .commit-id {
 .tw-mb-4 {
   margin-bottom: 2rem !important;
 }
+
+/* --- notifications watching --- */
+
+.flex-list {
+  background-color: none;
+}
+
