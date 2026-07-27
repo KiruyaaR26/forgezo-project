@@ -1,4 +1,7 @@
-
+/* ==========================================================================
+   YUROS GUIDELINE — Forgejo Custom Theme
+   Design tokens + component overrides
+   ========================================================================== */
 
 :root {
   /* --- Base Tokens --- */
@@ -629,7 +632,11 @@ code, pre, .mono, .commit-id {
   color: var(--custom-text-primary);
 }
 
-.milestone, .project, .ref, .checklist, .due-date {
+.flex-item-body.issue-meta .milestone,
+.flex-item-body.issue-meta .project,
+.flex-item-body.issue-meta .ref,
+.flex-item-body.issue-meta .checklist,
+.flex-item-body.issue-meta .due-date {
   display: inline-flex;
   align-items: center;
   gap: 0.375rem;
@@ -669,4 +676,113 @@ code, pre, .mono, .commit-id {
   color: var(--custom-pr-conflict);
   border: 1px solid rgba(248, 81, 73, 0.4);
   background: rgba(248, 81, 73, 0.1);
+}
+
+/* ==========================================================================
+   PROJECT — New/Edit Project Two-Column Layout
+   ========================================================================== */
+
+.yuros-project-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  align-items: flex-start;
+  padding: 2rem 0;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.yuros-project-form-col {
+  flex: 1 1 500px;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.yuros-project-form-col textarea,
+.yuros-project-form-col input,
+.yuros-project-form-col .ui.selection.dropdown {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.yuros-project-preview-col {
+  flex: 1 1 320px;
+  max-width: 400px;
+  min-width: 0;
+  box-sizing: border-box;
+}
+.yuros-preview-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--custom-text-muted);
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.yuros-preview-card {
+  background: var(--custom-bg-elevated);
+  border: 1px solid var(--custom-border);
+  border-radius: var(--custom-radius-lg);
+  padding: 2rem;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.yuros-preview-icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: var(--custom-radius-md);
+  background: rgba(255, 69, 0, 0.08);
+  color: var(--custom-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.yuros-preview-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--custom-text-primary);
+  word-break: break-word;
+}
+
+.yuros-preview-desc {
+  font-size: 0.9rem;
+  color: var(--custom-text-muted);
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.yuros-preview-meta {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--custom-border);
+}
+
+.yuros-preview-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--custom-accent);
+  background: rgba(255, 69, 0, 0.08);
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+}
+
+@media (max-width: 900px) {
+  .yuros-project-layout {
+    grid-template-columns: 1fr;
+  }
+  .yuros-project-preview-col {
+    position: static;
+    order: -1;
+  }
 }
