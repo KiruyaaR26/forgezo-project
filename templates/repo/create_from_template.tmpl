@@ -1,0 +1,51 @@
+    <div class="yuros-newrepo-field">                                                                                                                                                    
+        <label>                                                                                                                                                                             
+            {{ctx.Locale.Tr "repo.template"}}                                                                                                                                                   
+        </label>                                                                                                                                                                            
+        <div id="repo_template_search" class="ui search selection dropdown tw-w-full yuros-newrepo-dropdown">                                                                               
+            <input type="hidden" id="repo_template" name="repo_template" value="{{if ne .repo_template 0}}{{.repo_template}}{{end}}">                                                           
+            <div class="default text">{{.repo_template_name}}</div>                                                                                                                             
+            <div class="menu"></div>                                                                                                                                                            
+        </div>                                                                                                                                                                              
+    </div>                                                                                                                                                                               
+                                                                                                                                                                                         
+    <div id="template_units" class="tw-hidden yuros-newrepo-grid-2">                                                                                                                     
+        <div class="yuros-newrepo-section-header tw-col-span-full">                                                                                                                         
+            <h4>{{ctx.Locale.Tr "repo.template.items"}}</h4>                                                                                                                                    
+        </div>                                                                                                                                                                              
+                                                                                                                                                                                         
+        <label class="yuros-newrepo-checkbox-label">                                                                                                                                        
+            <div class="yuros-newrepo-checkbox-wrapper"><input name="git_content" type="checkbox" {{if .git_content}}checked{{end}}><div class="yuros-newrepo-checkbox-custom"></div></div>     
+            <span class="yuros-newrepo-checkbox-title">{{ctx.Locale.Tr "repo.template.git_content"}}</span>                                                                                     
+        </label>                                                                                                                                                                            
+        <label class="yuros-newrepo-checkbox-label">                                                                                                                                        
+            <div class="yuros-newrepo-checkbox-wrapper"><input name="webhooks" type="checkbox" {{if .webhooks}}checked{{end}}><div class="yuros-newrepo-checkbox-custom"></div></div>           
+            <span class="yuros-newrepo-checkbox-title">{{ctx.Locale.Tr "repo.template.webhooks"}}</span>                                                                                        
+        </label>                                                                                                                                                                            
+        <label class="yuros-newrepo-checkbox-label">                                                                                                                                        
+            <div class="yuros-newrepo-checkbox-wrapper"><input name="topics" type="checkbox" {{if .topics}}checked{{end}}><div class="yuros-newrepo-checkbox-custom"></div></div>               
+            <span class="yuros-newrepo-checkbox-title">{{ctx.Locale.Tr "repo.template.topics"}}</span>                                                                                          
+        </label>                                                                                                                                                                            
+        <label class="yuros-newrepo-checkbox-label">                                                                                                                                        
+            <div class="yuros-newrepo-checkbox-wrapper"><input name="avatar" type="checkbox" {{if .avatar}}checked{{end}}><div class="yuros-newrepo-checkbox-custom"></div></div>               
+            <span class="yuros-newrepo-checkbox-title">{{ctx.Locale.Tr "repo.template.avatar"}}</span>                                                                                          
+        </label>                                                                                                                                                                            
+        <label class="yuros-newrepo-checkbox-label">                                                                                                                                        
+            <div class="yuros-newrepo-checkbox-wrapper"><input name="labels" type="checkbox" {{if .labels}}checked{{end}}><div class="yuros-newrepo-checkbox-custom"></div></div>               
+            <span class="yuros-newrepo-checkbox-title">{{ctx.Locale.Tr "repo.template.issue_labels"}}</span>                                                                                    
+        </label>                                                                                                                                                                            
+        <label class="yuros-newrepo-checkbox-label">                                                                                                                                        
+            <div class="yuros-newrepo-checkbox-wrapper"><input name="protected_branch" type="checkbox" {{if .protected_branch}}checked{{end}}><div class="yuros-newrepo-checkbox-               
+  custom"></div></div>                                                                                                                                                                   
+            <span class="yuros-newrepo-checkbox-title">{{ctx.Locale.Tr "repo.settings.protected_branch"}}</span>                                                                                
+        </label>                                                                                                                                                                            
+        <label class="yuros-newrepo-checkbox-label">                                                                                                                                        
+            <div class="yuros-newrepo-checkbox-wrapper"><input name="git_hooks" type="checkbox" {{if .git_hooks}}checked{{end}}><div class="yuros-newrepo-checkbox-custom"></div></div>         
+            <div class="yuros-newrepo-checkbox-content">                                                                                                                                        
+                <span class="yuros-newrepo-checkbox-title">{{ctx.Locale.Tr "repo.template.git_hooks"}}</span>                                                                                       
+                {{if not .SignedUser.CanEditGitHook}}                                                                                                                                               
+                    <span class="yuros-newrepo-help">{{ctx.Locale.Tr "repo.template.git_hooks_tooltip"}}</span>                                                                                         
+                {{end}}                                                                                                                                                                             
+            </div>                                                                                                                                                                              
+        </label>                                                                                                                                                                            
+    </div>                     
