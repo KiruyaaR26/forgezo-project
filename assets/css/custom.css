@@ -13,6 +13,7 @@
   --custom-accent:       #FF4500;
   --custom-stroke-alt:   #A8B9D3;
   --custom-placeholder:  #D9D9D9;
+  --custom-danger:       #DA3633;
 
   --custom-radius-sm:    4px;
   --custom-radius-md:    8px;
@@ -81,7 +82,7 @@ code, pre, .mono, .commit-id {
 
 .ui.card, .ui.cards > .card, .ui.segment, .box, .repository.file.list {
   background: var(--custom-bg-elevated) !important;
-  border: 1px solid var(--custom-border) !important;
+  /*border: 1px solid var(--custom-border) !important;*/
   border-radius: var(--custom-radius-lg) !important;
   margin-bottom: 2.5rem !important;
   padding: 1.5rem !important;
@@ -112,7 +113,7 @@ code, pre, .mono, .commit-id {
 
 .ui.menu {
   background: transparent !important;
-  border: 1px solid var(--custom-border) !important;
+  /*border: 1px solid var(--custom-border) !important;*/
   border-radius: var(--custom-radius-lg) !important;
 }
 
@@ -642,7 +643,11 @@ code, pre, .mono, .commit-id {
   gap: 0.375rem;
 }
 
-.milestone svg, .project svg, .ref svg, .checklist svg, .due-date svg {
+.flex-item-body.issue-meta .milestone svg,
+.flex-item-body.issue-meta .project svg,
+.flex-item-body.issue-meta .ref svg,
+.flex-item-body.issue-meta .checklist svg,
+.flex-item-body.issue-meta .due-date svg {
   opacity: 0.7;
 }
 
@@ -713,6 +718,7 @@ code, pre, .mono, .commit-id {
   min-width: 0;
   box-sizing: border-box;
 }
+
 .yuros-preview-label {
   font-size: 0.75rem;
   text-transform: uppercase;
@@ -777,11 +783,20 @@ code, pre, .mono, .commit-id {
   border-radius: 999px;
 }
 
+@media (max-width: 900px) {
+  .yuros-project-layout {
+    flex-direction: column;
+  }
+  .yuros-project-preview-col {
+    max-width: 100%;
+    order: -1;
+  }
+}
+
 /* ==========================================================================
-   Yuros Guideline - Milestone List Override (Vanguard UI Architect)
+   MILESTONE LIST (repo/issue/milestones.tmpl)
    ========================================================================== */
 
-/* 1. Container & Layout Reset */
 .yuros-milestone-list {
   list-style: none;
   padding: 2rem 0;
@@ -794,10 +809,10 @@ code, pre, .mono, .commit-id {
   box-sizing: border-box;
 }
 
-/* 2. Double-Bezel Card Architecture */
+/* Double-Bezel Card */
 .yuros-milestone-card-outer {
   padding: 0.375rem;
-  border-radius: calc(var( --custom-radius-lg) * 1.5);
+  border-radius: calc(var(--custom-radius-lg) * 1.5);
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid var(--custom-border);
   transition: transform 600ms var(--custom-spring), border-color 600ms var(--custom-spring), box-shadow 600ms var(--custom-spring);
@@ -806,13 +821,13 @@ code, pre, .mono, .commit-id {
 
 .yuros-milestone-card-outer:hover {
   transform: translateY(-4px) scale(0.995);
-  border-color: rgba(255, 69, 0, 0.4); /* Subtle accent glow */
+  border-color: rgba(255, 69, 0, 0.4);
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 69, 0, 0.08);
 }
 
 .yuros-milestone-card-inner {
   background: var(--custom-bg-elevated);
-  border-radius: var( --custom-radius-lg);
+  border-radius: var(--custom-radius-lg);
   padding: 2rem;
   display: flex;
   flex-direction: column;
@@ -821,7 +836,7 @@ code, pre, .mono, .commit-id {
   box-sizing: border-box;
 }
 
-/* 3. Header: Title & Progress Bar */
+/* Header: Title & Progress */
 .yuros-milestone-header {
   display: flex;
   justify-content: space-between;
@@ -862,7 +877,6 @@ code, pre, .mono, .commit-id {
   color: var(--custom-accent);
 }
 
-/* Custom Progress Bar */
 .yuros-milestone-progress-container {
   display: flex;
   align-items: center;
@@ -876,15 +890,15 @@ code, pre, .mono, .commit-id {
   flex-grow: 1;
   height: 8px;
   background: rgba(255, 255, 255, 0.08);
-  border-radius: var( --custom-radius-pill);
+  border-radius: var(--custom-radius-pill);
   overflow: hidden;
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 .yuros-milestone-progress-fill {
   height: 100%;
   background: var(--custom-accent);
-  border-radius: var( --custom-radius-pill);
+  border-radius: var(--custom-radius-pill);
   transition: width 1s var(--custom-spring);
   box-shadow: 0 0 10px var(--custom-accent);
 }
@@ -897,7 +911,7 @@ code, pre, .mono, .commit-id {
   text-align: right;
 }
 
-/* 4. Toolbar: Stats & Actions */
+/* Toolbar: Stats & Actions */
 .yuros-milestone-toolbar {
   display: flex;
   justify-content: space-between;
@@ -935,14 +949,14 @@ code, pre, .mono, .commit-id {
 }
 
 .yuros-milestone-overdue {
-  color: var(--y-danger);
+  color: var(--custom-danger);
   font-weight: 600;
 }
+
 .yuros-milestone-overdue svg {
   opacity: 1;
 }
 
-/* Actions */
 .yuros-milestone-actions {
   display: flex;
   align-items: center;
@@ -959,7 +973,7 @@ code, pre, .mono, .commit-id {
   font-size: 0.85rem;
   font-weight: 600;
   padding: 0.4rem 0.8rem;
-  border-radius: var( --custom-radius-pill);
+  border-radius: var(--custom-radius-pill);
   border: 1px solid var(--custom-border);
   text-decoration: none;
   transition: all 300ms ease;
@@ -974,21 +988,20 @@ code, pre, .mono, .commit-id {
 
 .yuros-milestone-btn.yuros-btn-danger:hover {
   background: rgba(218, 54, 51, 0.1);
-  color: var(--y-danger);
+  color: var(--custom-danger);
   border-color: rgba(218, 54, 51, 0.3);
 }
 
-/* 5. Content Markup */
 .yuros-milestone-content {
   background: rgba(0, 0, 0, 0.15);
-  border-radius: var( --custom-radius-lg);
+  border-radius: var(--custom-radius-lg);
   padding: 1.5rem;
   border: 1px dashed var(--custom-border);
   color: var(--custom-text-muted);
   font-size: 0.95rem;
 }
 
-/* 6. Cinematic Entry Animation */
+/* Entry Animation */
 .yuros-milestone-fade-up {
   animation: yurosMilestoneFadeUp 0.8s var(--custom-spring) both;
 }
@@ -1004,7 +1017,6 @@ code, pre, .mono, .commit-id {
   100% { opacity: 1; transform: translateY(0); filter: blur(0); }
 }
 
-/* Responsive Overrides */
 @media (max-width: 768px) {
   .yuros-milestone-progress-container {
     max-width: 100%;
@@ -1017,13 +1029,366 @@ code, pre, .mono, .commit-id {
   }
 }
 
+/* ==========================================================================
+   NEW REPOSITORY (repo/create*.tmpl)
+   ========================================================================== */
 
-@media (max-width: 900px) {
-  .yuros-project-layout {
-    grid-template-columns: 1fr;
+.yuros-newrepo-wrapper {
+  background-color: var(--custom-bg-base);
+  min-height: 100vh;
+  padding: 4rem 1rem 8rem 1rem;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.yuros-newrepo-container {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  box-sizing: border-box;
+}
+
+.yuros-newrepo-page-header {
+  text-align: center;
+}
+
+.yuros-newrepo-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--custom-text-primary);
+  letter-spacing: -0.02em;
+  margin: 0 0 0.5rem 0;
+}
+
+.yuros-newrepo-subtitle {
+  font-size: 1.125rem;
+  color: var(--custom-text-muted);
+  margin: 0;
+}
+
+/* Double-Bezel Card Sections */
+.yuros-newrepo-section-outer {
+  padding: 0.375rem;
+  border-radius: calc(var(--custom-radius-lg) * 1.5);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--custom-border);
+  margin-bottom: 2rem;
+}
+
+.yuros-newrepo-section-inner {
+  background: var(--custom-bg-elevated);
+  border-radius: var(--custom-radius-lg);
+  padding: 2.5rem;
+  box-shadow: inset 0 1px 1px rgba(248, 248, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.yuros-newrepo-section-header h3 {
+  font-size: 1.25rem;
+  color: var(--custom-text-primary);
+  margin: 0 0 0.5rem 0;
+}
+
+.yuros-newrepo-section-header span {
+  color: var(--custom-text-muted);
+  font-size: 0.9rem;
+}
+
+/* Form Fields */
+.yuros-newrepo-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.yuros-newrepo-field label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--custom-text-primary);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.yuros-newrepo-help {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--custom-text-muted);
+}
+
+.yuros-newrepo-input,
+.yuros-newrepo-textarea {
+  background: var(--custom-bg-base);
+  border: 1px solid var(--custom-border);
+  color: var(--custom-text-primary);
+  border-radius: var(--custom-radius-lg);
+  padding: 0.875rem 1.25rem;
+  font-size: 1rem;
+  transition: all 300ms ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.yuros-newrepo-input:focus,
+.yuros-newrepo-textarea:focus {
+  outline: none;
+  border-color: var(--custom-accent);
+  box-shadow: 0 0 0 3px rgba(255, 69, 0, 0.2);
+}
+
+.yuros-newrepo-field-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
+}
+
+.yuros-newrepo-field-row .yuros-newrepo-field {
+  flex: 1;
+}
+
+.yuros-newrepo-divider {
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--custom-border);
+  padding-bottom: 0.25rem;
+}
+
+/* Custom Checkboxes */
+.yuros-newrepo-checkbox-label {
+  display: flex;
+  flex-direction: row !important;
+  align-items: flex-start;
+  gap: 1rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.yuros-newrepo-checkbox-wrapper {
+  position: relative;
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+}
+
+.yuros-newrepo-checkbox-wrapper input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.yuros-newrepo-checkbox-custom {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: var(--custom-bg-base);
+  border: 1px solid var(--custom-border);
+  border-radius: 6px;
+  transition: all 300ms var(--custom-spring);
+}
+
+.yuros-newrepo-checkbox-wrapper input:checked ~ .yuros-newrepo-checkbox-custom {
+  background-color: var(--custom-accent);
+  border-color: var(--custom-accent);
+}
+
+.yuros-newrepo-checkbox-wrapper input:checked ~ .yuros-newrepo-checkbox-custom:after {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 3px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.yuros-newrepo-checkbox-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.yuros-newrepo-checkbox-title {
+  color: var(--custom-text-primary);
+  font-weight: 600;
+}
+
+/* Fomantic UI Dropdown Override */
+.ui.selection.dropdown.yuros-newrepo-dropdown {
+  background: var(--custom-bg-base) !important;
+  border: 1px solid var(--custom-border) !important;
+  color: var(--custom-text-primary) !important;
+  border-radius: var(--custom-radius-lg) !important;
+  padding: 0.875rem 1.25rem !important;
+  min-height: auto;
+}
+
+.ui.selection.dropdown.yuros-newrepo-dropdown:hover {
+  border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.ui.selection.dropdown.yuros-newrepo-dropdown.active {
+  border-color: var(--custom-accent) !important;
+  box-shadow: 0 0 0 3px rgba(255, 69, 0, 0.2) !important;
+}
+
+.ui.selection.dropdown.yuros-newrepo-dropdown .menu {
+  background: var(--custom-bg-base) !important;
+  border: 1px solid var(--custom-border) !important;
+  border-radius: var(--custom-radius-lg) !important;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+.ui.selection.dropdown.yuros-newrepo-dropdown .menu .item {
+  color: var(--custom-text-primary) !important;
+  border-top: 1px solid var(--custom-border) !important;
+  padding: 0.875rem 1.25rem !important;
+}
+
+.ui.selection.dropdown.yuros-newrepo-dropdown .menu .item:hover {
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+.ui.selection.dropdown.yuros-newrepo-dropdown .text {
+  color: var(--custom-text-primary) !important;
+}
+
+.ui.segments {
+  border: transparent;
+}
+
+/* Advanced Options (details/summary) */
+.yuros-newrepo-section-advanced {
+  padding: 1.5rem 2.5rem;
+}
+
+.yuros-newrepo-details summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.yuros-newrepo-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.yuros-newrepo-summary-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.yuros-newrepo-summary-content h3 {
+  font-size: 1.125rem;
+  color: var(--custom-text-primary);
+  margin: 0;
+}
+
+.yuros-newrepo-summary-content small {
+  color: var(--custom-text-muted);
+  font-size: 0.85rem;
+}
+
+.yuros-newrepo-summary-icon {
+  background: rgba(255, 255, 255, 0.05);
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 400ms var(--custom-spring);
+}
+
+.yuros-newrepo-details[open] .yuros-newrepo-summary-icon {
+  transform: rotate(180deg);
+}
+
+.yuros-newrepo-details-body {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--custom-border);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  animation: yurosNewrepoSlideDown 400ms var(--custom-spring);
+}
+
+@keyframes yurosNewrepoSlideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Primary CTA */
+.yuros-newrepo-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.yuros-newrepo-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--custom-text-primary);
+  color: var(--custom-bg-base);
+  border: none;
+  border-radius: var(--custom-radius-pill);
+  padding: 0.5rem 0.5rem 0.5rem 2rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 400ms var(--custom-spring);
+}
+
+.yuros-newrepo-btn-primary:hover {
+  transform: scale(0.98);
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+}
+
+.yuros-newrepo-btn-icon {
+  background: rgba(0, 0, 0, 0.1);
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 400ms var(--custom-spring);
+}
+
+.yuros-newrepo-btn-primary:hover .yuros-newrepo-btn-icon {
+  transform: translate(4px, -1px) scale(1.1);
+  background: var(--custom-accent);
+  color: #fff;
+}
+
+/* Grid Helper */
+.yuros-newrepo-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .yuros-newrepo-grid-2 {
+    grid-template-columns: 1fr 1fr;
   }
-  .yuros-project-preview-col {
-    position: static;
-    order: -1;
-  }
+}
+
+.yuros-newrepo-fade-up {
+  animation: yurosNewrepoFadeUp 1s var(--custom-spring) both;
+}
+
+@keyframes yurosNewrepoFadeUp {
+  from { opacity: 0; transform: translateY(3rem); filter: blur(10px); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
 }
