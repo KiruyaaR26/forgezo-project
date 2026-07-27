@@ -1437,3 +1437,8 @@ code, pre, .mono, .commit-id {
   gap: 52rem;
 }
 
+/* --- notifications main -- */
+
+.tw-mb-4 {
+  margin-bottom: 2rem !important;
+}
