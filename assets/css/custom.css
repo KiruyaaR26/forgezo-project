@@ -1,5 +1,7 @@
+
+
 :root {
-  /* --- Variable Kustom Anda --- */
+  /* --- Base Tokens --- */
   --custom-bg-base:      #0C1016;
   --custom-bg-elevated:  #12161D;
   --custom-text-primary: #F8F8FF;
@@ -15,117 +17,134 @@
   --custom-radius-xl:    20px;
   --custom-radius-pill:  999px;
 
-  /* --- Pemetaan ke Variabel Internal Forgejo --- */
-  
-  /* Background & Card */
+  --custom-spring:       cubic-bezier(0.32, 0.72, 0, 1);
+
+  /* --- Pull Request / Status Colors --- */
+  --custom-pr-approve:   #3FB950;
+  --custom-pr-reject:    #F85149;
+  --custom-pr-wait:      #D29922;
+  --custom-pr-conflict:  #F85149;
+
+  /* --- Forgejo Internal Variable Mapping --- */
   --color-body: var(--custom-bg-base) !important;
   --color-box-body: var(--custom-bg-elevated) !important;
   --color-box-header: var(--custom-bg-elevated) !important;
   --color-footer: var(--custom-bg-base) !important;
-  
-  /* Navbar Atas */
+
   --color-navbar: var(--custom-bg-elevated) !important;
   --color-nav-bg: var(--custom-bg-elevated) !important;
   --color-nav-hover-bg: var(--custom-bg-base) !important;
-  
-  /* Teks */
+
   --color-text: var(--custom-text-primary) !important;
   --color-text-dark: var(--custom-text-primary) !important;
   --color-text-light: var(--custom-text-muted) !important;
   --color-text-light-2: var(--custom-text-muted) !important;
   --color-text-light-3: var(--custom-text-muted) !important;
-  
-  /* Border & Garis */
+
   --color-border: var(--custom-border) !important;
   --color-secondary-border: var(--custom-border) !important;
   --color-box-border: var(--custom-border) !important;
-  
-  /* Warna Aksen (Tombol Utama, Link, Active State) */
+
   --color-primary: var(--custom-accent) !important;
-  --color-primary-dark-1: #E03D00 !important; /* Sedikit lebih gelap dari accent untuk efek hover */
+  --color-primary-dark-1: #E03D00 !important;
   --color-primary-dark-2: #C23500 !important;
   --color-primary-light-1: #FF5714 !important;
   --color-active: var(--custom-accent) !important;
   --color-link: var(--custom-accent) !important;
-  
-  /* Input & Tombol Biasa */
+
   --color-input-background: var(--custom-bg-base) !important;
   --color-input-text: var(--custom-text-primary) !important;
   --color-input-border: var(--custom-border) !important;
   --color-button: var(--custom-bg-elevated) !important;
-  
-  /* Border Radius Override */
+
   --border-radius: var(--custom-radius-md) !important;
 }
 
-/* Penyesuaian Font Global */
+/* ==========================================================================
+   TYPOGRAPHY
+   ========================================================================== */
+
 body, .ui.menu, input, button, textarea {
-    font-family: 'Inter', 'Manrope', -apple-system, 'Segoe UI', sans-serif !important;
+  font-family: 'Inter', 'Manrope', -apple-system, 'Segoe UI', sans-serif !important;
 }
+
 code, pre, .mono, .commit-id {
-    font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace !important;
+  font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace !important;
 }
 
-/* =========================================
-   FIX: MACRO-WHITESPACE & KOTAK (CARDS)
-   ========================================= */
-/* Memberikan jarak (space) yang luas antar kotak dan di dalam kotak */
-.ui.card, .ui.cards>.card, .ui.segment, .box, .repository.file.list {
-    background: var(--custom-bg-elevated) !important;
-    border: 1px solid var(--custom-border) !important;
-    border-radius: var(--custom-radius-lg) !important;
-    
-    /* Jarak luas antar kotak (Macro-whitespace) */
-    margin-bottom: 2.5rem !important; 
-    
-    /* Jarak lega di dalam kotak (Padding) */
-    padding: 1.5rem !important; 
-    
-    /* Sedikit shadow agar terangkat */
-    box-shadow: 0 8px 24px rgba(0,0,0,0.2) !important;
+/* ==========================================================================
+   GLOBAL LAYOUT — Cards, Segments, Boxes
+   ========================================================================== */
+
+.ui.card, .ui.cards > .card, .ui.segment, .box, .repository.file.list {
+  background: var(--custom-bg-elevated) !important;
+  border: 1px solid var(--custom-border) !important;
+  border-radius: var(--custom-radius-lg) !important;
+  margin-bottom: 2.5rem !important;
+  padding: 1.5rem !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2) !important;
 }
 
-/* Navbar / Menu Utama */
+.ui.table.segment {
+  padding: 0 !important;
+}
+
+.ui.table {
+  background: var(--custom-bg-elevated) !important;
+  border: 1px solid var(--custom-border) !important;
+  border-radius: var(--custom-radius-lg) !important;
+}
+
+.ui.table th {
+  padding: 1.25rem 1rem !important;
+}
+
+.ui.table td {
+  padding: 1rem !important;
+}
+
+/* ==========================================================================
+   NAVBAR / HEADER
+   ========================================================================== */
+
 .ui.menu {
-    background: transparent !important;
-    border: 1px solid var(--custom-border) !important;
-    border-radius: var(--custom-radius-lg) !important;
-}
-
-.ui.secondary.menu .item {
-    border-radius: var(--custom-radius-md) !important;
+  background: transparent !important;
+  border: 1px solid var(--custom-border) !important;
+  border-radius: var(--custom-radius-lg) !important;
 }
 
 .ui.secondary.menu {
-    margin-top: 1rem;
-}
-#navbar {
-    padding: 0.5rem 1rem !important;
-    display: flex !important; 
-    align-items: center !important;
-    background: transparent !important;
-    border-bottom: 0px;
+  margin-top: 1rem;
 }
 
-/* Memberikan jarak (wide space) yang sangat lega antara menu kiri dan area Search di kanan */
+.ui.secondary.menu .item {
+  border-radius: var(--custom-radius-md) !important;
+}
+
+#navbar {
+  padding: 0.5rem 1rem !important;
+  display: flex !important;
+  align-items: center !important;
+  background: transparent !important;
+  border-bottom: 0px !important;
+}
+
 #navbar .right.menu,
 #navbar .right.stackable.menu {
-    margin-left: auto !important; /* Dorong semua elemen di menu kanan agar mentok ke ujung kanan */
+  margin-left: auto !important;
 }
 
-/* Jarak tambahan khusus untuk Search Bar agar tidak berdempetan */
 #navbar .right.menu .item {
-    margin-left: 1.5rem !important; 
+  margin-left: 1.5rem !important;
 }
 
-/* Mempercantik dan memanjangkan Search bar sedikit agar proporsional dengan wide space */
 #navbar .right.menu .ui.input input {
-    width: 280px !important;
-    transition: width 0.3s ease !important;
+  width: 280px !important;
+  transition: width 0.3s ease !important;
 }
 
 #navbar .right.menu .ui.input input:focus {
-    width: 340px !important; /* Melebar saat diklik, efek elegan */
+  width: 340px !important;
 }
 
 .overflow-menu {
@@ -141,296 +160,513 @@ code, pre, .mono, .commit-id {
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
-  
-  /* Efek Glassmorphism Khas Mac */
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  
-  /* Border dan Shadow Halus */
   border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 12px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-
 }
 
-/* Tabel File Explorer (jangan ditimpa padding besarnya ke semua td) */
-.ui.table.segment {
-    padding: 0 !important; /* Hilangkan padding dalam untuk tabel agar header nempel pinggir */
-}
+/* ==========================================================================
+   HOMEPAGE — Hero Spacing & Typography
+   ========================================================================== */
 
-.ui.table {
-    background: var(--custom-bg-elevated) !important;
-    border: 1px solid var(--custom-border) !important;
-    border-radius: var(--custom-radius-lg) !important;
-}
-
-.ui.table th {
-    padding: 1.25rem 1rem !important; /* Header tabel lebih lega */
-}
-
-.ui.table td {
-    padding: 1rem !important; /* Baris tabel lebih lega */
-}
-
-/* DIBAWAH INI ADALAH spacing, tipografi */
-
-/* Hero section atas (logo + judul + tagline) */
 .page-content.home .tw-mb-8 {
-    margin-bottom: 4rem !important;
-    padding-top: 3rem !important;
+  margin-bottom: 4rem !important;
+  padding-top: 3rem !important;
 }
 
 .page-content.home .logo {
-    width: 140px !important;
-    height: 140px !important;
-    margin-bottom: 1.5rem !important;
+  width: 140px !important;
+  height: 140px !important;
+  margin-bottom: 1.5rem !important;
 }
 
 .page-content.home .hero h1.title {
-    font-size: 3.5rem !important;
-    font-weight: 700 !important;
-    letter-spacing: -0.02em !important;
-    line-height: 1.1 !important;
-    margin-bottom: 0.75rem !important;
+  font-size: 3.5rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.1 !important;
+  margin-bottom: 0.75rem !important;
 }
 
 .page-content.home .hero h2 {
-    font-size: 1.25rem !important;
-    font-weight: 400 !important;
-    opacity: 0.75;
-    max-width: 32rem;
-    margin: 0 auto !important;
+  font-size: 1.25rem !important;
+  font-weight: 400 !important;
+  opacity: 0.75;
+  max-width: 32rem;
+  margin: 0 auto !important;
 }
 
-/* Grid 4 kartu fitur */
 .page-content.home .ui.stackable.middle.very.relaxed.page.grid {
-    margin: 0 auto 3rem auto !important;
-    max-width: 1100px !important;
-    padding: 0 2rem !important;
+  margin: 0 auto 3rem auto !important;
+  max-width: 1100px !important;
+  padding: 0 2rem !important;
 }
 
 .page-content.home .ui.stackable.middle.very.relaxed.page.grid .column {
-    padding: 2.5rem !important;
+  padding: 2.5rem !important;
 }
 
-/* Judul tiap kartu */
 .page-content.home .hero.ui.icon.header {
-    font-size: 1.75rem !important;
-    font-weight: 600 !important;
-    margin-bottom: 1.25rem !important;
-    display: flex !important;
-    align-items: center;
-    gap: 0.75rem;
+  font-size: 1.75rem !important;
+  font-weight: 600 !important;
+  margin-bottom: 1.25rem !important;
+  display: flex !important;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .page-content.home .hero.ui.icon.header svg {
-    width: 1.5em !important;
-    height: 1.5em !important;
+  width: 1.5em !important;
+  height: 1.5em !important;
 }
 
-/* Paragraf isi kartu */
 .page-content.home p.large {
-    font-size: 1.05rem !important;
-    line-height: 1.7 !important;
-    opacity: 0.85;
+  font-size: 1.05rem !important;
+  line-height: 1.7 !important;
+  opacity: 0.85;
 }
 
-/* Responsive: mobile jangan terlalu lebar */
 @media (max-width: 767px) {
-    .page-content.home .hero h1.title {
-        font-size: 2.25rem !important;
-    }
-    .page-content.home .ui.stackable.middle.very.relaxed.page.grid .column {
-        padding: 1.5rem !important;
-    }
+  .page-content.home .hero h1.title {
+    font-size: 2.25rem !important;
+  }
+  .page-content.home .ui.stackable.middle.very.relaxed.page.grid .column {
+    padding: 1.5rem !important;
+  }
 }
 
-/* ==========================================
-   YUROS — Repo List Card (Explore Page)
-   ========================================== */
+/* ==========================================================================
+   HOMEPAGE — Bento Grid Cards (Blackbird Forge)
+   ========================================================================== */
+
+.bf-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.5rem;
+  max-width: 1400px;
+  margin: 0 auto 4rem;
+  padding: 0 1.5rem;
+}
+
+.bf-card {
+  grid-column: span 4;
+  background: var(--custom-bg-elevated);
+  border: 1px solid var(--custom-border);
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+  color: var(--custom-text-primary);
+}
+
+.bf-card-wide {
+  grid-column: span 8;
+}
+
+.bf-card-accent {
+  background: var(--custom-accent);
+  color: #fff;
+  border: none;
+}
+
+.bf-card-icon {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.bf-card h3 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.bf-card p {
+  font-size: 1rem;
+  line-height: 1.7;
+  opacity: 0.8;
+}
+
+@media (max-width: 900px) {
+  .bf-grid {
+    grid-template-columns: 1fr;
+  }
+  .bf-card, .bf-card-wide {
+    grid-column: span 1;
+  }
+}
+
+/* ==========================================================================
+   EXPLORE — Repo List Card (Yuros)
+   ========================================================================== */
 
 .yuros-repo-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-    gap: 1.5rem;
-    padding: 1.5rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1.5rem;
+  padding: 1.5rem 0;
 }
 
 .yuros-card-outer {
-    padding: 0.4rem;
-    border-radius: 1.5rem;
-    background: rgba(248, 248, 255, 0.02);
-    border: 1px solid var(--custom-border);
-    height: 100%;
-    transition: border-color 300ms ease, transform 300ms ease;
+  padding: 0.4rem;
+  border-radius: 1.5rem;
+  background: rgba(248, 248, 255, 0.02);
+  border: 1px solid var(--custom-border);
+  height: 100%;
+  transition: border-color 300ms ease, transform 300ms ease;
 }
 
 .yuros-card-outer:hover {
-    border-color: var(--custom-accent);
-    transform: translateY(-3px);
+  border-color: var(--custom-accent);
+  transform: translateY(-3px);
 }
 
 .yuros-card-inner {
-    background: var(--custom-bg-elevated);
-    border-radius: 1.1rem;
-    padding: 1.5rem;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+  background: var(--custom-bg-elevated);
+  border-radius: 1.1rem;
+  padding: 1.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .yuros-fade-up {
-    animation: yurosFadeUp 0.6s ease both;
-}
-@keyframes yurosFadeUp {
-    from { opacity: 0; transform: translateY(1rem); }
-    to { opacity: 1; transform: translateY(0); }
+  animation: yurosFadeUp 0.6s ease both;
 }
 
-/* Header */
+@keyframes yurosFadeUp {
+  from { opacity: 0; transform: translateY(1rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 .yuros-card-header {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.75rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
 }
 
 .yuros-card-avatar {
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 0.75rem;
-    background: rgba(255, 69, 0, 0.08);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--custom-accent);
-    flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.75rem;
+  background: rgba(255, 69, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--custom-accent);
+  flex-shrink: 0;
 }
 
 .yuros-card-title-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-    min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-width: 0;
 }
 
 .yuros-card-title {
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: var(--custom-text-primary);
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--custom-text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .yuros-card-title a {
-    color: var(--custom-text-primary);
-    text-decoration: none;
+  color: var(--custom-text-primary);
+  text-decoration: none;
 }
 
 .yuros-card-title a:hover {
-    color: var(--custom-accent);
+  color: var(--custom-accent);
 }
 
 .yuros-card-badges {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.35rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
 }
 
 .yuros-card-badges .ui.label {
-    background: var(--custom-bg-base) !important;
-    color: var(--custom-text-muted) !important;
-    border: 1px solid var(--custom-border) !important;
-    border-radius: 999px !important;
-    font-size: 0.7rem !important;
-    padding: 0.2rem 0.7rem !important;
+  background: var(--custom-bg-base) !important;
+  color: var(--custom-text-muted) !important;
+  border: 1px solid var(--custom-border) !important;
+  border-radius: 999px !important;
+  font-size: 0.7rem !important;
+  padding: 0.2rem 0.7rem !important;
 }
 
-/* Body */
 .yuros-card-body {
-    font-size: 0.9rem;
-    color: var(--custom-text-muted);
-    line-height: 1.6;
-    flex-grow: 1;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
+  font-size: 0.9rem;
+  color: var(--custom-text-muted);
+  line-height: 1.6;
+  flex-grow: 1;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
-/* Topics */
 .yuros-card-topics {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.35rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
 }
 
 .yuros-card-topics .ui.label {
-    background: rgba(255, 69, 0, 0.08) !important;
-    color: var(--custom-accent) !important;
-    border: none !important;
-    border-radius: 999px !important;
-    font-size: 0.7rem !important;
-    padding: 0.25rem 0.75rem !important;
+  background: rgba(255, 69, 0, 0.08) !important;
+  color: var(--custom-accent) !important;
+  border: none !important;
+  border-radius: 999px !important;
+  font-size: 0.7rem !important;
+  padding: 0.25rem 0.75rem !important;
 }
 
-/* Footer */
 .yuros-card-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    padding-top: 0.75rem;
-    border-top: 1px solid var(--custom-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--custom-border);
 }
 
 .yuros-card-stats {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .yuros-stat-item {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    font-size: 0.8rem;
-    color: var(--custom-text-muted) !important;
-    text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  color: var(--custom-text-muted) !important;
+  text-decoration: none;
 }
 
 .yuros-stat-item:hover {
-    color: var(--custom-accent) !important;
+  color: var(--custom-accent) !important;
 }
 
 .yuros-lang-dot {
-    width: 0.6rem;
-    height: 0.6rem;
-    border-radius: 999px;
-    display: inline-block;
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 999px;
+  display: inline-block;
 }
 
 .yuros-card-updated {
-    font-size: 0.75rem;
-    color: var(--custom-text-muted);
-    opacity: 0.7;
+  font-size: 0.75rem;
+  color: var(--custom-text-muted);
+  opacity: 0.7;
 }
 
-/* Empty state */
 .yuros-no-results {
-    grid-column: 1 / -1;
-    text-align: center;
-    padding: 3rem;
-    color: var(--custom-text-muted);
-    font-style: italic;
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem;
+  color: var(--custom-text-muted);
+  font-style: italic;
 }
 
-/* Responsive */
 @media (max-width: 600px) {
-    .yuros-repo-grid {
-        grid-template-columns: 1fr;
-    }
+  .yuros-repo-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   ISSUE LIST (shared/issuelist.tmpl)
+   ========================================================================== */
+
+.flex-list {
+  display: flex !important;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem 0;
+  background-color: var(--custom-bg-base);
+  border: none !important;
+}
+
+.flex-list .flex-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background-color: var(--custom-bg-elevated);
+  border: 1px solid var(--custom-border) !important;
+  border-radius: 1rem;
+  padding: 1.25rem 1.5rem !important;
+  transition: all 400ms var(--custom-spring);
+  color: var(--custom-text-primary);
+  text-decoration: none;
+  margin: 0 !important;
+}
+
+.flex-list .flex-item:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 69, 0, 0.4) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.flex-item-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  margin-top: 0.125rem;
+}
+
+.flex-item-icon svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.flex-item-main {
+  flex-grow: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.flex-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.flex-item-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 0;
+}
+
+.flex-item-title a.issue-title {
+  color: var(--custom-text-primary) !important;
+  text-decoration: none;
+  transition: color 200ms ease;
+  word-break: break-word;
+}
+
+.flex-item-title a.issue-title:hover {
+  color: var(--custom-accent) !important;
+}
+
+.labels-list {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  align-items: center;
+}
+
+.labels-list .ui.label {
+  border-radius: 999px !important;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  padding: 0.2rem 0.6rem !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  text-transform: capitalize;
+}
+
+.flex-item-trailing {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--custom-text-muted);
+  font-size: 0.875rem;
+  margin-left: auto;
+}
+
+.ui.assignee {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ui.assignee img {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  border: 1px solid var(--custom-border);
+}
+
+.flex-item-body.issue-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.25rem;
+  font-size: 0.85rem;
+  color: var(--custom-text-muted);
+  margin-top: 0.25rem;
+}
+
+.flex-item-body.issue-meta a {
+  color: var(--custom-text-muted);
+  text-decoration: none;
+  transition: color 200ms ease;
+}
+
+.flex-item-body.issue-meta a:hover {
+  color: var(--custom-text-primary);
+}
+
+.milestone, .project, .ref, .checklist, .due-date {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.milestone svg, .project svg, .ref svg, .checklist svg, .due-date svg {
+  opacity: 0.7;
+}
+
+.approvals, .rejects, .waiting, .conflicting {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 0.125rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.approvals {
+  color: var(--custom-pr-approve);
+  border: 1px solid rgba(63, 185, 80, 0.3);
+}
+
+.rejects {
+  color: var(--custom-pr-reject);
+  border: 1px solid rgba(248, 81, 73, 0.3);
+}
+
+.waiting {
+  color: var(--custom-pr-wait);
+  border: 1px solid rgba(210, 153, 34, 0.3);
+}
+
+.conflicting {
+  color: var(--custom-pr-conflict);
+  border: 1px solid rgba(248, 81, 73, 0.4);
+  background: rgba(248, 81, 73, 0.1);
 }
