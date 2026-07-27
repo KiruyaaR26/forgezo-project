@@ -1421,9 +1421,16 @@ code, pre, .mono, .commit-id {
 /* -- pull request --- */
 
 .switch > .item {
-   border-radius: 6px;
+  border-radius: 6px;
 }
 
 .ui.secondary.menu .dropdown.item > .menu {
-   border-radius: 6px
+  border-radius: 6px
 }
+
+/* -- explore user --- */
+
+.flex-item .flex-item-body {
+  gap: 52rem;
+}
+
