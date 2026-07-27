@@ -1449,3 +1449,17 @@ code, pre, .mono, .commit-id {
   background-color: none;
 }
 
+/* --- new migrate --- */
+.migrate-entry {
+  background-color: none;
+  border: none;
+}
+
+@media (min-width: 599.98px) {
+  .migrate-entry .content {
+  border-top: none;
+  border-radius: none;
+  background: none;
+  }
+}
+
