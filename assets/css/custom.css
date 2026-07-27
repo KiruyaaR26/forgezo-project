@@ -1405,6 +1405,9 @@ code, pre, .mono, .commit-id {
   padding-bottom: 6px !important;
 }
 
+.flex-text-inline {
+  gap: .3;
+}
 
 /* -- page sign in -- */
 
