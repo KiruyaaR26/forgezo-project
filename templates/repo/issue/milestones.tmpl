@@ -1,0 +1,141 @@
+{{template "base/head" .}}
+<div role="main" aria-label="{{.Title}}" class="page-content repository milestones">
+	{{template "repo/header" .}}
+	<div class="ui container">
+		{{template "base/alert" .}}
+
+		<div class="list-header list-header-issues">
+			{{template "repo/issue/navbar" .}}
+			{{template "repo/issue/search" .}}
+			{{if and (or .CanWriteIssues .CanWritePulls) (not .Repository.IsArchived)}}
+				<div class="button-row">
+					<a class="ui small primary button" href="{{$.Link}}/new">{{ctx.Locale.Tr "repo.milestones.new"}}</a>
+				</div>
+			{{end}}
+		</div>
+
+		{{template "repo/issue/filters" .}}
+
+		<!-- Yuros Milestone List -->
+		<ul class="yuros-milestone-list">
+			{{range .Milestones}}
+				<li class="yuros-milestone-card-outer yuros-milestone-fade-up">
+					<div class="yuros-milestone-card-inner">
+						
+						<!-- Header: Title & Progress -->
+						<div class="yuros-milestone-header">
+							<h3 class="yuros-milestone-title">
+								<span class="yuros-milestone-icon">{{svg "octicon-milestone" 18}}</span>
+								<a href="{{$.RepoLink}}/milestone/{{.ID}}">{{.Name}}</a>
+							</h3>
+							
+							<div class="yuros-milestone-progress-container">
+								<div class="yuros-milestone-progress-track">
+									<!-- Kita ganti elemen <progress> native jadi div khusus yang width-nya dipasang langsung dari .Completeness -->
+									<div class="yuros-milestone-progress-fill" style="width: {{.Completeness}}%;"></div>
+								</div>
+								<span class="yuros-milestone-progress-text">{{.Completeness}}%</span>
+							</div>
+						</div>
+						
+						<!-- Toolbar: Stats & Actions -->
+						<div class="yuros-milestone-toolbar">
+							<div class="yuros-milestone-stats">
+								<div class="yuros-milestone-stat-item">
+									{{svg "octicon-issue-opened" 14}}
+									<span>{{ctx.Locale.PrettyNumber .NumOpenIssues}} {{ctx.Locale.Tr "repo.issues.open_title"}}</span>
+								</div>
+								
+								<div class="yuros-milestone-stat-item">
+									{{svg "octicon-check" 14}}
+									<span>{{ctx.Locale.PrettyNumber .NumClosedIssues}} {{ctx.Locale.Tr "repo.issues.closed_title"}}</span>
+								</div>
+								
+								{{if .TotalTrackedTime}}
+									<div class="yuros-milestone-stat-item">
+										{{svg "octicon-clock" 14}}
+										<span>{{.TotalTrackedTime|Sec2Time}}</span>
+									</div>
+								{{end}}
+								
+								{{if .UpdatedUnix}}
+									<div class="yuros-milestone-stat-item">
+										{{svg "octicon-clock" 14}}
+										<span>{{ctx.Locale.Tr "repo.milestones.update_ago" (DateUtils.TimeSince .UpdatedUnix)}}</span>
+									</div>
+								{{end}}
+								
+								<div class="yuros-milestone-stat-item">
+									{{if .IsClosed}}
+										{{$closedDate:= DateUtils.TimeSince .ClosedDateUnix}}
+										{{svg "octicon-clock" 14}}
+										<span>{{ctx.Locale.Tr "repo.milestones.closed" $closedDate}}</span>
+									{{else}}
+										{{if .DeadlineString}}
+											<span class="yuros-milestone-due-date {{if .IsOverdue}}yuros-milestone-overdue{{end}}">
+												{{svg "octicon-calendar" 14}}
+												{{DateUtils.AbsoluteShort (.DeadlineString|DateUtils.ParseLegacy)}}
+											</span>
+										{{else}}
+											<span class="yuros-milestone-due-date">
+												{{svg "octicon-calendar" 14}}
+												{{ctx.Locale.Tr "repo.milestones.no_due_date"}}
+											</span>
+										{{end}}
+									{{end}}
+								</div>
+							</div>
+							
+							{{if and (or $.CanWriteIssues $.CanWritePulls) (not $.Repository.IsArchived)}}
+								<div class="yuros-milestone-actions">
+									<a class="yuros-milestone-btn" href="{{$.Link}}/{{.ID}}/edit">
+										{{svg "octicon-pencil" 14}} {{ctx.Locale.Tr "repo.issues.label_edit"}}
+									</a>
+									{{if .IsClosed}}
+										<!-- Class 'link-action' wajib dipertahankan untuk binding JS Forgejo -->
+										<a class="yuros-milestone-btn link-action" href data-url="{{$.Link}}/{{.ID}}/open">
+											{{svg "octicon-check" 14}} {{ctx.Locale.Tr "repo.milestones.open"}}
+										</a>
+									{{else}}
+										<a class="yuros-milestone-btn link-action" href data-url="{{$.Link}}/{{.ID}}/close">
+											{{svg "octicon-x" 14}} {{ctx.Locale.Tr "repo.milestones.close"}}
+										</a>
+									{{end}}
+									<!-- Class 'delete-button' wajib untuk binding trigger modal -->
+									<a class="yuros-milestone-btn yuros-btn-danger delete-button" href="#" data-url="{{$.RepoLink}}/milestones/delete" data-id="{{.ID}}" data-modal-id="delete-milestone">
+										{{svg "octicon-trash" 14}} {{ctx.Locale.Tr "repo.issues.label_delete"}}
+									</a>
+								</div>
+							{{end}}
+						</div>
+						
+						{{if .Content}}
+							<!-- Class 'markup content' dipertahankan untuk styling Markdown bawaan -->
+							<div class="yuros-milestone-content markup content">
+								{{.RenderedContent}}
+							</div>
+						{{end}}
+						
+					</div>
+				</li>
+			{{end}}
+
+			{{template "base/paginate" .}}
+		</ul>
+	</div>
+</div>
+
+{{if or .CanWriteIssues .CanWritePulls}}
+	<!-- Modal konfirmasi delete dibiarkan utuh -->
+	<div class="ui g-modal-confirm delete modal" id="delete-milestone">
+		<div class="header">
+			{{svg "octicon-trash"}}
+			{{ctx.Locale.Tr "repo.milestones.deletion"}}
+		</div>
+		<div class="content">
+			<p>{{ctx.Locale.Tr "repo.milestones.deletion_desc"}}</p>
+		</div>
+		{{template "base/modal_actions_confirm" .}}
+	</div>
+{{end}}
+{{template "base/footer" .}}
