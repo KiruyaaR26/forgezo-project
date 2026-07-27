@@ -1394,9 +1394,7 @@ code, pre, .mono, .commit-id {
 }
 
 /* -- page explore organizations -- */
-.flex-list > .flex-item + .flex-item {
-   border-top: 0px !important;
-}
+
 
 .flex-item .flex-item {
    gap: 16px !important;
