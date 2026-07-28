@@ -1493,3 +1493,15 @@ code, pre, .mono, .commit-id {
     background-color: transparent !important;
     box-shadow: none !important;
 }
+
+/* --- organizations settings applications --- */
+
+.flex-list {
+  background-color: transparent !important;
+}
+
+/* --- delete organizations --- */
+
+.ui.error.header {
+  background: transparent !important;
+}
