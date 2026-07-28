@@ -1463,3 +1463,11 @@ code, pre, .mono, .commit-id {
   }
 }
 
+/* --- organizations activity --- */
+.ui.horizontal.segments > .segment {
+    border: none !important;
+}
+
+.ui.attached.segment.horizontal.segments {
+    border: none !important;
+}
