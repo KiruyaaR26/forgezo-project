@@ -1505,3 +1505,9 @@ code, pre, .mono, .commit-id {
 .ui.error.header {
   background: transparent !important;
 }
+
+/* --- code repositories --- */
+
+*, ::before, ::after {
+  border-style: none;
+}
