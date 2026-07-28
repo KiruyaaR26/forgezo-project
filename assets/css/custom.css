@@ -1520,3 +1520,17 @@ code, pre, .mono, .commit-id {
 .ui.segments:not(.horizontal) > .segment:last-child {
   margin-top: 30px;
 }
+
+/* --- wiki --- */
+.page-content.repository.wiki.start .ui.center.segment {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+}
+
+.page-content.repository.wiki.start .ui.center.segment > * {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
