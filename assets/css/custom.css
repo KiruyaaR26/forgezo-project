@@ -1434,7 +1434,8 @@ code, pre, .mono, .commit-id {
 /* -- explore user --- */
 
 .flex-item .flex-item-body {
-  gap: 52rem;
+  gap: 1rem;
+  padding-top: 16px;
 }
 
 /* --- notifications main -- */
@@ -1470,4 +1471,25 @@ code, pre, .mono, .commit-id {
 
 .ui.attached.segment.horizontal.segments {
     border: none !important;
+}
+
+/* --- organizations repositories --- */
+
+.ui.horizontal.segments > .segment {
+    border: none !important;
+}
+
+
+.ui.attached.segment.horizontal.segments {
+    border: none !important;
+}
+.ui.bottom.attached.segment {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.ui.five.wide.column .ui.bottom.attached.segment {
+    border: none !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
 }
