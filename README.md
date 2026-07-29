@@ -9,7 +9,7 @@ Forgejo mendukung 2 jenis *override* tanpa perlu *compile* ulang aplikasi:
 | Jenis Override | Lokasi | Fungsi |
 | --- | --- | --- |
 | **CSS** | `custom/public/assets/css/custom.css` | Ubah warna, *spacing*, radius, *font*, *styling* elemen |
-| **Template (`.tmpl`)** | `custom/templates/<path/sama/seperti/source>` | Ubah struktur HTML/layout halaman |
+| **Template (`.tmpl`)** | `custom/templates` | Ubah struktur HTML/layout halaman |
 
 Semua file di dalam folder `custom/` **menimpa** file bawaan Forgejo dengan *path* yang sama persis. Forgejo akan otomatis pakai file di `custom/` kalau ada, tanpa perlu *restart-compile* — cukup `systemctl restart forgejo`.
 
