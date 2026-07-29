@@ -36,7 +36,7 @@ Instal package Forgejo:
 sudo pacman -S forgejo --noconfirm
 ```
 ```
-sudo systemctl enable forgejo ---now
+sudo systemctl enable forgejo 
 ```
 
 ## langkah terakhir akses melalu web
