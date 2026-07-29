@@ -1,6 +1,52 @@
-
-
 # forgezo-project
+
+# instalasi forgejo
+
+## Langkah 1: Instalasi dan Konfigurasi MariaDB
+
+1. Instal package MariaDB dan lakukan inisialisasi direktori data:
+   ```bash
+   sudo pacman -S mariadb --noconfirm
+   sudo mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
+   ```
+
+2. Aktifkan dan jalankan service MariaDB:
+   ```bash
+   sudo systemctl enable --now mariadb
+   ```
+
+3. Amankan instalasi database (buat password root baru):
+   ```bash
+   sudo mariadb-secure-installation
+   ```
+
+4. Masuk ke prompt MariaDB untuk membuat database dan user khusus Forgejo:
+   ```bash
+   sudo mariadb -u root -p
+   ```
+
+5. Jalankan perintah SQL berikut di dalam prompt MariaDB (ganti `password_kamu` dengan password yang kuat):
+   ```sql
+   CREATE DATABASE forgejo CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_general_ci';
+   CREATE USER 'forgejo'@'localhost' IDENTIFIED BY 'password_kamu';
+   GRANT ALL PRIVILEGES ON forgejo.* TO 'forgejo'@'localhost';
+   FLUSH PRIVILEGES;
+   EXIT;
+   ```
+
+---
+
+## Langkah 2: Instalasi dan Konfigurasi Awal Forgejo
+
+1. Instal package Forgejo:
+   ```bash
+   sudo pacman -S forgejo --noconfirm
+   ```
+
+## langkah terakhir akses melalu web
+```
+https://localhost:3000
+```
 
 # Dokumentasi Custom Theme & Layout Forgejo — Yuros Guideline
 
