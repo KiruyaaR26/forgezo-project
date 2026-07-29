@@ -1544,3 +1544,15 @@ code, pre, .mono, .commit-id {
     margin-left: auto !important;
     margin-right: auto !important;
 }
+
+.repository.view.issue .comment-list::before,
+.timeline::before {
+  display: none !important;
+  background-color: transparent !important;
+}
+
+.repository.view.issue .comment-list .timeline-item .timeline-item-icon {
+  border: none !important;
+  background: transparent !important;
+}
+
