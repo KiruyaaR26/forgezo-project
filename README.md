@@ -48,6 +48,11 @@
 https://localhost:3000
 ```
 
+## cloning repo dari github 
+```
+git clone https://github.com/KiruyaaR26/forgezo-project.git
+```
+
 # Dokumentasi Custom Theme & Layout Forgejo — Yuros Guideline
 
 Forgejo mendukung 2 jenis *override* tanpa perlu *compile* ulang aplikasi:
@@ -159,7 +164,6 @@ Buat kerangka folder awal (hanya dilakukan sekali jika belum ada):
 ```bash
 mkdir -p /var/lib/forgejo/custom/public/assets/css
 mkdir -p /var/lib/forgejo/custom/templates
-
 ```
 
 ### A. Update CSS
