@@ -59,7 +59,7 @@ Buat kerangka folder awal (hanya dilakukan sekali jika belum ada):
 
 ```bash
 mkdir -p /var/lib/forgejo/custom/public/assets/css
-mkdir -p /var/lib/forgejo/custom/templates
+mkdir -p /var/lib/forgejo/custom/templates/custom
 ```
 
 
@@ -73,7 +73,9 @@ sudo cp -r forgezo-project/templates/*  /var/lib/forgejo/custom/templates
 ```
 sudo cp -r forgezo-project/assets/css/custom.css /var/lib/forgejo/custom/public/assets/css
 ```
-
+```
+sudo mv /var/lib/forgejo/custom/templates/headers.tmpl /var/lib/forgejo/custom/templates/custom/extra_links.tmpl
+```
 
 
 ### Update CSS
@@ -101,26 +103,6 @@ sudo mkdir -p /var/lib/forgejo/custom/templates/explore
 sudo nvim /var/lib/forgejo/custom/templates/explore/repo_list.tmpl
 
 ```
-
-
-> Paste isi file dari GitHub, lalu save.
-
-
-
-**Contoh 2: Template berada LANGSUNG di luar (Contoh: `home.tmpl`)**
-Karena file ini tidak masuk ke dalam sub-folder apapun, kamu bisa langsung membuatnya di dalam folder `templates`:
-
-1. Buat file templatenya dengan Neovim:
-```bash
-sudo nvim /var/lib/forgejo/custom/templates/home.tmpl
-
-```
-
-
-> Paste isi file dari GitHub, lalu save.
-
-
-
 **Terapkan Perubahan (Wajib dijalankan setelah edit .tmpl apapun):**
 Setelah selesai mengedit file, kembalikan *permission* folder ke user `forgejo` dan *restart* sistem agar layout baru dibaca:
 
