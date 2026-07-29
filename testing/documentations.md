@@ -133,7 +133,6 @@ sudo systemctl status forgejo      # pastikan "active (running)"
 ```
 ```
 sudo journalctl -u forgejo -n 50   # cek error kalau ada masalah
-
 ```
 
 > Lalu lakukan hard refresh browser: **`Ctrl + Shift + R`**
