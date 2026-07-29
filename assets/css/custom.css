@@ -1587,3 +1587,6 @@ code, pre, .mono, .commit-id {
 }.page-content.admin .ui.segment:not(.table) 
 {  padding: 1.5rem 
 
+.button {
+   padding-inline: .9rem;
+}
