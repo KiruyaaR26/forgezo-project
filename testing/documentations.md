@@ -39,6 +39,10 @@ sudo pacman -S forgejo --noconfirm
 sudo systemctl enable forgejo 
 ```
 
+```
+sudo systemctl start forgejo
+```
+
 ## langkah terakhir akses melalu web
 ```
 https://localhost:3000
