@@ -176,18 +176,7 @@ sudo cp -r forgezo-project/public/* /var/lib/forgejo/custom/
 
 
 
-### A. Update CSS
-
-Buka file CSS:
-
-```bash
-sudo nvim /var/lib/forgejo/custom/public/assets/css/custom.css
-
-```
-
-> Lalu isi dengan file `custom.css` yang ada di GitHub.
-
-*Paste*/*edit* isinya, *save*, lalu jalankan:
+### Update CSS
 
 ```bash
 sudo chown -R forgejo:forgejo /var/lib/forgejo/custom
@@ -195,7 +184,7 @@ sudo systemctl restart forgejo
 
 ```
 
-### B. Update/Tambah Template Layout
+### Update/Tambah Template Layout
 
 Berikut adalah 2 contoh penerapan berdasarkan lokasi file sumber di GitHub:
 
@@ -242,7 +231,7 @@ sudo systemctl restart forgejo
 
 ```
 
-### C. Verifikasi
+### Verifikasi
 
 Pastikan Forgejo berjalan normal tanpa *error*:
 
