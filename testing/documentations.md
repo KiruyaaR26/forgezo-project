@@ -5,6 +5,8 @@
 1. Instal package MariaDB dan lakukan inisialisasi direktori data:
    ```bash
    sudo pacman -S mariadb --noconfirm
+   ```
+   ```
    sudo mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
    ```
 
@@ -63,6 +65,8 @@ Buat kerangka folder awal (hanya dilakukan sekali jika belum ada):
 
 ```bash
 mkdir -p /var/lib/forgejo/custom/public/assets/css
+```
+```
 mkdir -p /var/lib/forgejo/custom/templates/custom
 ```
 
@@ -86,6 +90,8 @@ sudo mv /var/lib/forgejo/custom/templates/headers.tmpl /var/lib/forgejo/custom/t
 
 ```bash
 sudo chown -R forgejo:forgejo /var/lib/forgejo/custom
+```
+```
 sudo systemctl restart forgejo
 ```
 
@@ -112,6 +118,8 @@ Setelah selesai mengedit file, kembalikan *permission* folder ke user `forgejo` 
 
 ```bash
 sudo chown -R forgejo:forgejo /var/lib/forgejo/custom
+```
+```
 sudo systemctl restart forgejo
 
 ```
@@ -122,6 +130,8 @@ Pastikan Forgejo berjalan normal tanpa *error*:
 
 ```bash
 sudo systemctl status forgejo      # pastikan "active (running)"
+```
+```
 sudo journalctl -u forgejo -n 50   # cek error kalau ada masalah
 
 ```
