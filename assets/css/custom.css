@@ -161,6 +161,9 @@ code, pre, .mono, .commit-id {
   width: 340px !important;
 }
 
+#navbar .navbar-right .dir-rtl .content li:nth-child(1) {
+  border-radius: 0px;
+}
 .overflow-menu {
   display: flex;
   flex: 1;
@@ -1141,6 +1144,7 @@ code, pre, .mono, .commit-id {
   transition: all 300ms ease;
   width: 100%;
   box-sizing: border-box;
+  border-radius: var(--custom-radius-lg) !important;
 }
 
 .yuros-newrepo-input:focus,
