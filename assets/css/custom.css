@@ -1590,3 +1590,10 @@ code, pre, .mono, .commit-id {
 .button {
    padding-inline: .9rem;
 }
+
+.file-view.markup {
+  padding: 2em;
+  border: 1px solid var(--custom-border);
+  background: var(--custom-bg-elevated);
+  border-radius: 0 0 var(--custom-radius-lg) var(--custom-radius-lg);
+}
