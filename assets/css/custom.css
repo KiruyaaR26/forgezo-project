@@ -103,12 +103,13 @@ code, pre, .mono, .commit-id {
   padding: 1.25rem 1rem !important;
 }
 
-.ui.table td {
+.ui.table td:not(.lines-num):not(.lines-code){
   padding: 0.5rem !important;
 }
 
-.ui.segment {
-  padding: 0.5rem !important;
+ .repository-menu {
+
+   margin-top: 20px;
 }
 /* ==========================================================================
    NAVBAR / HEADER
@@ -124,9 +125,10 @@ code, pre, .mono, .commit-id {
   margin-top: 1rem;
 }
 
-.ui.secondary.menu .item {
-  border-radius: var(--custom-radius-md) !important;
-}
+/*.ui.segments:not(.horizontal) > .segment:last-child {
+  margin-top: 20px !important;
+  margin-bottom: 20px !important;
+}*/
 
 .ui.segment {
   padding: 0.5rem !important;
@@ -1619,4 +1621,22 @@ code, pre, .mono, .commit-id {
   border: 1px solid var(--custom-border);
   background: var(--custom-bg-elevated);
   border-radius: 0 0 var(--custom-radius-lg) var(--custom-radius-lg);
+}
+
+.ui.bottom.attached.table.segment .file-view.code-view table td {
+  padding: 0.5rem !important;
+}
+
+/* ==========================================================================
+   CODE VIEW — Line Height / Row Spacing
+   ========================================================================== */
+
+.ui.table td.lines-num,
+.ui.table td.lines-code {
+  padding: 0 8px !important;
+  line-height: 28px !important;
+}
+
+.lines-num span::after {
+  line-height: 28px !important;
 }
