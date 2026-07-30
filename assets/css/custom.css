@@ -77,20 +77,43 @@ code, pre, .mono, .commit-id {
 }
 
 /* ==========================================================================
-   GLOBAL LAYOUT — Cards, Segments, Boxes
+   GLOBAL LAYOUT — Cards, Segments, Boxes, Tables
    ========================================================================== */
 
 .ui.card, .ui.cards > .card, .ui.segment, .box, .repository.file.list {
   background: var(--custom-bg-elevated) !important;
-  /*border: 1px solid var(--custom-border) !important;*/
   border-radius: var(--custom-radius-lg) !important;
   margin-bottom: 2.5rem !important;
   padding: 1.5rem !important;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2) !important;
 }
 
-.ui.table.segment {
-  padding: 0 !important;
+.ui.segment {
+  padding: 0.5rem !important;
+}
+
+.ui.segments {
+  border: transparent;
+}
+
+.ui.segments:not(.horizontal) > .segment:last-child {
+  margin-top: 30px;
+}
+
+.ui.horizontal.segments > .segment,
+.ui.attached.segment.horizontal.segments {
+  border: none !important;
+}
+
+.ui.bottom.attached.segment {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.ui.five.wide.column .ui.bottom.attached.segment {
+  border: none !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
 }
 
 .ui.table {
@@ -99,25 +122,42 @@ code, pre, .mono, .commit-id {
   border-radius: var(--custom-radius-lg) !important;
 }
 
+.ui.table.segment {
+  padding: 0 !important;
+}
+
 .ui.table th {
   padding: 1.25rem 1rem !important;
 }
 
-.ui.table td:not(.lines-num):not(.lines-code){
+.ui.table td:not(.lines-num):not(.lines-code) {
   padding: 0.5rem !important;
 }
 
- .repository-menu {
-
-   margin-top: 20px;
+.repository-menu {
+  margin-top: 20px;
 }
+
+.ui.dropdown .menu .item:first-of-type,
+.ui.dropdown .menu .item:last-of-type {
+  border-radius: 0;
+}
+
+.ui.selection.active.dropdown .menu,
+.ui.selection.active.dropdown:hover .menu {
+  border-color: transparent;
+}
+
+*, ::before, ::after {
+  border-style: none;
+}
+
 /* ==========================================================================
    NAVBAR / HEADER
    ========================================================================== */
 
 .ui.menu {
   background: transparent !important;
-  /*border: 1px solid var(--custom-border) !important;*/
   border-radius: var(--custom-radius-lg) !important;
 }
 
@@ -125,37 +165,11 @@ code, pre, .mono, .commit-id {
   margin-top: 1rem;
 }
 
-/*.ui.segments:not(.horizontal) > .segment:last-child {
-  margin-top: 20px !important;
-  margin-bottom: 20px !important;
-}*/
-
-.ui.segment {
-  padding: 0.5rem !important;
-}
-
-.ui.dropdown .menu .item:first-of-type {
-  border-radius: 0;
-}
-
-.ui.selection.active.dropdown .menu, .ui.selection.active.dropdown:hover .menu {
-  border-color: transparent;
-}
-
-.ui.dropdown .menu .item:last-of-type {
-  border-radius: 0;
-}
-
 #navbar {
   padding: 0.5rem 1rem !important;
   display: flex !important;
   align-items: center !important;
-  background: transparent !important;
-  border-bottom: 0px !important;
-  padding: 0.5rem 1rem !important;
-  display: flex !important;
-  align-items: center !important;
-  background: rgba(18, 22, 29, 0.85) !important; 
+  background: rgba(18, 22, 29, 0.85) !important;
   backdrop-filter: blur(12px) !important;
   -webkit-backdrop-filter: blur(12px) !important;
   border-bottom: 1px solid var(--custom-border) !important;
@@ -182,9 +196,6 @@ code, pre, .mono, .commit-id {
   width: 340px !important;
 }
 
-#navbar .navbar-right .dir-rtl .content li:nth-child(1) {
-  border-radius: 0px;
-}
 .overflow-menu {
   display: flex;
   flex: 1;
@@ -525,7 +536,7 @@ code, pre, .mono, .commit-id {
 }
 
 /* ==========================================================================
-   ISSUE LIST (shared/issuelist.tmpl)
+   FLEX LIST (shared component — issue list, explore org/user, notifications)
    ========================================================================== */
 
 .flex-list {
@@ -533,7 +544,7 @@ code, pre, .mono, .commit-id {
   flex-direction: column;
   gap: 1rem;
   padding: 1rem 0;
-  background-color: var(--custom-bg-base);
+  background-color: transparent !important;
   border: none !important;
 }
 
@@ -555,6 +566,20 @@ code, pre, .mono, .commit-id {
   transform: translateY(-2px);
   border-color: rgba(255, 69, 0, 0.4) !important;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.flex-item .flex-item {
+  gap: 16px !important;
+  padding: 16px 0 !important;
+}
+
+.flex-item .flex-item-title {
+  padding-bottom: 6px !important;
+}
+
+.flex-item .flex-item-body {
+  gap: 1rem;
+  padding-top: 16px;
 }
 
 .flex-item-icon {
@@ -607,6 +632,10 @@ code, pre, .mono, .commit-id {
 
 .flex-item-title a.issue-title:hover {
   color: var(--custom-accent) !important;
+}
+
+.flex-text-inline {
+  gap: 0.3rem;
 }
 
 .labels-list {
@@ -843,7 +872,6 @@ code, pre, .mono, .commit-id {
   box-sizing: border-box;
 }
 
-/* Double-Bezel Card */
 .yuros-milestone-card-outer {
   padding: 0.375rem;
   border-radius: calc(var(--custom-radius-lg) * 1.5);
@@ -870,7 +898,6 @@ code, pre, .mono, .commit-id {
   box-sizing: border-box;
 }
 
-/* Header: Title & Progress */
 .yuros-milestone-header {
   display: flex;
   justify-content: space-between;
@@ -945,7 +972,6 @@ code, pre, .mono, .commit-id {
   text-align: right;
 }
 
-/* Toolbar: Stats & Actions */
 .yuros-milestone-toolbar {
   display: flex;
   justify-content: space-between;
@@ -1007,7 +1033,7 @@ code, pre, .mono, .commit-id {
   font-size: 0.85rem;
   font-weight: 600;
   padding: 0.4rem 0.8rem;
-  border-radius: var(--custom-radius-pill);
+  border-radius: 0;
   border: 1px solid var(--custom-border);
   text-decoration: none;
   transition: all 300ms ease;
@@ -1035,7 +1061,6 @@ code, pre, .mono, .commit-id {
   font-size: 0.95rem;
 }
 
-/* Entry Animation */
 .yuros-milestone-fade-up {
   animation: yurosMilestoneFadeUp 0.8s var(--custom-spring) both;
 }
@@ -1102,7 +1127,6 @@ code, pre, .mono, .commit-id {
   margin: 0;
 }
 
-/* Double-Bezel Card Sections */
 .yuros-newrepo-section-outer {
   padding: 0.375rem;
   border-radius: calc(var(--custom-radius-lg) * 1.5);
@@ -1132,7 +1156,6 @@ code, pre, .mono, .commit-id {
   font-size: 0.9rem;
 }
 
-/* Form Fields */
 .yuros-newrepo-field {
   display: flex;
   flex-direction: column;
@@ -1159,13 +1182,12 @@ code, pre, .mono, .commit-id {
   background: var(--custom-bg-base);
   border: 1px solid var(--custom-border);
   color: var(--custom-text-primary);
-  border-radius: var(--custom-radius-lg);
+  border-radius: var(--custom-radius-lg) !important;
   padding: 0.875rem 1.25rem;
   font-size: 1rem;
   transition: all 300ms ease;
   width: 100%;
   box-sizing: border-box;
-  border-radius: var(--custom-radius-lg) !important;
 }
 
 .yuros-newrepo-input:focus,
@@ -1192,7 +1214,6 @@ code, pre, .mono, .commit-id {
   padding-bottom: 0.25rem;
 }
 
-/* Custom Checkboxes */
 .yuros-newrepo-checkbox-label {
   display: flex;
   flex-direction: row !important;
@@ -1254,7 +1275,6 @@ code, pre, .mono, .commit-id {
   font-weight: 600;
 }
 
-/* Fomantic UI Dropdown Override */
 .ui.selection.dropdown.yuros-newrepo-dropdown {
   background: var(--custom-bg-base) !important;
   border: 1px solid var(--custom-border) !important;
@@ -1295,11 +1315,6 @@ code, pre, .mono, .commit-id {
   color: var(--custom-text-primary) !important;
 }
 
-.ui.segments {
-  border: transparent;
-}
-
-/* Advanced Options (details/summary) */
 .yuros-newrepo-section-advanced {
   padding: 1.5rem 2.5rem;
 }
@@ -1362,7 +1377,6 @@ code, pre, .mono, .commit-id {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Primary CTA */
 .yuros-newrepo-actions {
   display: flex;
   justify-content: flex-end;
@@ -1406,7 +1420,6 @@ code, pre, .mono, .commit-id {
   color: #fff;
 }
 
-/* Grid Helper */
 .yuros-newrepo-grid-2 {
   display: grid;
   grid-template-columns: 1fr;
@@ -1428,23 +1441,9 @@ code, pre, .mono, .commit-id {
   to { opacity: 1; transform: translateY(0); filter: blur(0); }
 }
 
-/* -- page explore organizations -- */
-
-
-.flex-item .flex-item {
-  gap: 16px !important;
-  padding: 16px 0 !important;
-}
-
-.flex-item .flex-item-title {
-  padding-bottom: 6px !important;
-}
-
-.flex-text-inline {
-  gap: .3;
-}
-
-/* -- page sign in -- */
+/* ==========================================================================
+   SIGN IN
+   ========================================================================== */
 
 .ui.attached.header {
   background: none;
@@ -1453,137 +1452,65 @@ code, pre, .mono, .commit-id {
 }
 
 .ui.attached:not(.message) + .ui.attached.segment:not(.top) {
-  border-top: 1px solid var(--color-border);
+  border-top: 1px solid var(--custom-border);
 }
 
-/* -- pull request --- */
+/* ==========================================================================
+   PULL REQUEST
+   ========================================================================== */
 
 .switch > .item {
   border-radius: 6px;
 }
 
 .ui.secondary.menu .dropdown.item > .menu {
-  border-radius: 6px
+  border-radius: 6px;
 }
 
-/* -- explore user --- */
-
-.flex-item .flex-item-body {
-  gap: 1rem;
-  padding-top: 16px;
-}
-
-/* --- notifications main -- */
+/* ==========================================================================
+   NOTIFICATIONS
+   ========================================================================== */
 
 .tw-mb-4 {
   margin-bottom: 2rem !important;
 }
 
-/* --- notifications watching --- */
+/* ==========================================================================
+   MIGRATE (new repo migration)
+   ========================================================================== */
 
-.flex-list {
-  background-color: none;
-}
-
-/* --- new migrate --- */
 .migrate-entry {
-  background-color: none;
+  background-color: transparent;
   border: none;
 }
 
 @media (min-width: 599.98px) {
   .migrate-entry .content {
-  border-top: none;
-  border-radius: none;
-  background: none;
+    border-top: none;
+    background: none;
   }
 }
 
-/* --- organizations activity --- */
-.ui.horizontal.segments > .segment {
-    border: none !important;
-}
-
-.ui.attached.segment.horizontal.segments {
-    border: none !important;
-}
-
-/* --- organizations repositories --- */
-
-.ui.horizontal.segments > .segment {
-    border: none !important;
-}
-
-
-.ui.attached.segment.horizontal.segments {
-    border: none !important;
-}
-.ui.bottom.attached.segment {
-    border: none !important;
-    box-shadow: none !important;
-}
-
-.ui.five.wide.column .ui.bottom.attached.segment {
-    border: none !important;
-    background-color: transparent !important;
-    box-shadow: none !important;
-}
-
-/* --- organizations settings applications --- */
-
-.flex-list {
-  background-color: transparent !important;
-}
-
-/* --- delete organizations --- */
+/* ==========================================================================
+   ORGANIZATION SETTINGS — Error / Delete
+   ========================================================================== */
 
 .ui.error.header {
   background: transparent !important;
 }
 
-/* --- code repositories --- */
-
-*, ::before, ::after {
-  border-style: none;
-}
+/* ==========================================================================
+   ADMIN / LIST HEADER (search + filter bar)
+   ========================================================================== */
 
 .tw-py-2 {
   padding-top: 1.1rem !important;
   padding-bottom: 1.5rem !important;
 }
 
-.ui.segments:not(.horizontal) > .segment:last-child {
-  margin-top: 30px;
-}
-
-/* --- wiki --- */
-.page-content.repository.wiki.start .ui.center.segment {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    text-align: center !important;
-}
-
-.page-content.repository.wiki.start .ui.center.segment > * {
-    margin-left: auto !important;
-    margin-right: auto !important;
-}
-
-.repository.view.issue .comment-list::before,
-.timeline::before {
-  display: none !important;
-  background-color: transparent !important;
-}
-
-.repository.view.issue .comment-list .timeline-item .timeline-item-icon {
-  border: none !important;
-  background: transparent !important;
-}
-
 .page-content .list-header,
 .page-content.admin .ui.segment:not(.table) {
-  padding: 1rem 1.5rem !important;
+  padding: 1.5rem !important;
 }
 
 .page-content .list-header form,
@@ -1608,15 +1535,45 @@ code, pre, .mono, .commit-id {
   flex-shrink: 0 !important;
 }
 
-.page-content.admin .ui.segment:not(.table) {
-  padding: 1.5rem;
-}
-
 .button {
   padding-inline: 0.9rem;
-}.button {
-   padding-inline: .9rem;
 }
+
+/* ==========================================================================
+   WIKI
+   ========================================================================== */
+
+.page-content.repository.wiki.start .ui.center.segment {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
+
+.page-content.repository.wiki.start .ui.center.segment > * {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* ==========================================================================
+   ISSUE TIMELINE / COMMENTS
+   ========================================================================== */
+
+.repository.view.issue .comment-list::before,
+.timeline::before {
+  display: none !important;
+  background-color: transparent !important;
+}
+
+.repository.view.issue .comment-list .timeline-item .timeline-item-icon {
+  border: none !important;
+  background: transparent !important;
+}
+
+/* ==========================================================================
+   CODE VIEW — Markup / Table / Line Height
+   ========================================================================== */
 
 .file-view.markup {
   padding: 2em;
@@ -1629,10 +1586,6 @@ code, pre, .mono, .commit-id {
   padding: 0.5rem !important;
 }
 
-/* ==========================================================================
-   CODE VIEW — Line Height / Row Spacing
-   ========================================================================== */
-
 .ui.table td.lines-num,
 .ui.table td.lines-code {
   padding: 0 8px !important;
@@ -1644,7 +1597,7 @@ code, pre, .mono, .commit-id {
 }
 
 /* ==========================================================================
-   BUTTONS — Primary (Normal + Hover State)
+   BUTTONS
    ========================================================================== */
 
 .ui.primary.button,
@@ -1664,4 +1617,86 @@ code, pre, .mono, .commit-id {
   background: var(--custom-accent) !important;
   filter: brightness(1.1);
   color: #fff !important;
+}
+
+/* Variant tanpa class "ui" (misal tombol "New Project") */
+a.primary.button,
+.primary.button {
+  color: #fff !important;
+}
+
+/* ==========================================================================
+   RADIO BUTTON
+   ========================================================================== */
+
+input[type="radio"] {
+  accent-color: var(--custom-accent) !important;
+}
+
+/* Variant di dalam .ui.radio.checkbox (Fomantic UI, mis. org create) */
+.ui.radio.checkbox input[type="radio"] {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  width: 18px !important;
+  height: 18px !important;
+  border: 2px solid var(--custom-border) !important;
+  border-radius: 50% !important;
+  background: var(--custom-bg-base) !important;
+  outline: none !important;
+  cursor: pointer;
+  margin: 0 !important;
+  position: absolute;
+  top: 1px;
+  left: 0;
+  transition: border-color 200ms ease;
+}
+
+.ui.radio.checkbox input[type="radio"]:checked {
+  border-color: var(--custom-accent) !important;
+  background: var(--custom-bg-base) !important;
+}
+
+.ui.radio.checkbox input[type="radio"]:checked::after {
+  content: "" !important;
+  position: absolute !important;
+  top: 3px !important;
+  left: 3px !important;
+  width: 10px !important;
+  height: 10px !important;
+  border-radius: 50% !important;
+  background: var(--custom-accent) !important;
+}
+
+/* Variant native/polos (mis. Team New, Team permission matrix) */
+fieldset label > input[type="radio"] {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  width: 16px !important;
+  height: 16px !important;
+  border: 2px solid var(--custom-border) !important;
+  border-radius: 50% !important;
+  background: var(--custom-bg-base) !important;
+  outline: none !important;
+  cursor: pointer;
+  vertical-align: middle;
+  margin-inline-end: 0.5rem !important;
+  position: relative;
+  transition: border-color 200ms ease;
+}
+
+fieldset label > input[type="radio"]:checked {
+  border-color: var(--custom-accent) !important;
+}
+
+fieldset label > input[type="radio"]:checked::after {
+  content: "" !important;
+  position: absolute !important;
+  top: 1px !important;
+  left: 1px !important;
+  width: 10px !important;
+  height: 10px !important;
+  border-radius: 50% !important;
+  background: var(--custom-accent) !important;
 }
