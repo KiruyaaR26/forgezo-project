@@ -1453,7 +1453,7 @@ code, pre, .mono, .commit-id {
 }
 
 .ui.attached:not(.message) + .ui.attached.segment:not(.top) {
-  border-top: 1px solid var (--color-border);
+  border-top: 1px solid var(--color-border);
 }
 
 /* -- pull request --- */
@@ -1583,36 +1583,38 @@ code, pre, .mono, .commit-id {
 
 .page-content .list-header,
 .page-content.admin .ui.segment:not(.table) {
-  padding: 1rem 1.5rem !important; 
- 
+  padding: 1rem 1.5rem !important;
+}
 
-}.page-content .list-header form
-,.page-content.admin .ui.segment:not(.table) form 
-{  display: flex !important
-;  align-items: center !important
-;  width: 100% !important
-;  margin: 0 !important
-;  gap: 1rem
-;
+.page-content .list-header form,
+.page-content.admin .ui.segment:not(.table) form {
+  display: flex !important;
+  align-items: center !important;
+  width: 100% !important;
+  margin: 0 !important;
+  gap: 1rem;
+}
 
-}.page-content .list-header form .ui.input
-,.page-content.admin .ui.segment:not(.table) form .ui.input 
-{  flex-grow: 1 !important
-;  width: auto !important
-;
+.page-content .list-header form .ui.input,
+.page-content.admin .ui.segment:not(.table) form .ui.input {
+  flex-grow: 1 !important;
+  width: auto !important;
+}
 
+.page-content .list-header form .ui.dropdown,
+.page-content .list-header form .ui.button,
+.page-content.admin .ui.segment:not(.table) form .ui.dropdown {
+  margin: 0 !important;
+  flex-shrink: 0 !important;
+}
 
-}.page-content .list-header form .ui.dropdown
-,.page-content .list-header form .ui.button
-,.page-content.admin .ui.segment:not(.table) form .ui.dropdown 
-{  margin: 0 !important
-;  flex-shrink: 0 !important
-;
-
-}.page-content.admin .ui.segment:not(.table) 
-{  padding: 1.5rem 
+.page-content.admin .ui.segment:not(.table) {
+  padding: 1.5rem;
+}
 
 .button {
+  padding-inline: 0.9rem;
+}.button {
    padding-inline: .9rem;
 }
 
@@ -1639,4 +1641,27 @@ code, pre, .mono, .commit-id {
 
 .lines-num span::after {
   line-height: 28px !important;
+}
+
+/* ==========================================================================
+   BUTTONS — Primary (Normal + Hover State)
+   ========================================================================== */
+
+.ui.primary.button,
+.ui.primary.buttons .button {
+  background: var(--custom-accent) !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.01em;
+  border: none !important;
+  border-radius: var(--custom-radius-md) !important;
+}
+
+.ui.primary.button:hover,
+.ui.primary.buttons .button:hover,
+.ui.primary.button:focus,
+.ui.primary.buttons .button:focus {
+  background: var(--custom-accent) !important;
+  filter: brightness(1.1);
+  color: #fff !important;
 }
