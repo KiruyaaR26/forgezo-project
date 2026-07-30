@@ -104,12 +104,11 @@ code, pre, .mono, .commit-id {
 }
 
 .ui.table td {
-  padding: 1rem !important;
+  padding: 0.5rem !important;
 }
 
-.ui.segments:not(.horizontal) > .segment:last-child {
-  margin-top: 20px !important;
-  margin-bottom: 20px !important;
+.ui.segment {
+  padding: 0.5rem !important;
 }
 /* ==========================================================================
    NAVBAR / HEADER
@@ -127,6 +126,22 @@ code, pre, .mono, .commit-id {
 
 .ui.secondary.menu .item {
   border-radius: var(--custom-radius-md) !important;
+}
+
+.ui.segment {
+  padding: 0.5rem !important;
+}
+
+.ui.dropdown .menu .item:first-of-type {
+  border-radius: 0;
+}
+
+.ui.selection.active.dropdown .menu, .ui.selection.active.dropdown:hover .menu {
+  border-color: transparent;
+}
+
+.ui.dropdown .menu .item:last-of-type {
+  border-radius: 0;
 }
 
 #navbar {
